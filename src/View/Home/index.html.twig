@@ -1,7 +1,13 @@
 
+
 {% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{Parent()}}-Accueil
+{% endblock %}
+
 {% block content %}
-      <form class="mt-5 p-3 m-auto">
+ <form class="mt-5 p-3 m-auto">
          <div class="form-floating w-lg-25 w-sm-100 m-auto">
             <input type="email" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
@@ -15,6 +21,7 @@
             <img src="" class="rounded-pill" alt="">
          </div>
       </form>
+
 {% endblock %}
 
 

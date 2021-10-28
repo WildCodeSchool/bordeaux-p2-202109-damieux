@@ -1,0 +1,15 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.col-3{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.mailto {
+    color: #000000;
+}
+.mailto:hover { color: #ff0000; }
+
