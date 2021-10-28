@@ -1,4 +1,0 @@
-define('APP_DB_USER', 'Greg');
-define('APP_DB_PASSWORD', 'Maruru');
-define('APP_DB_HOST', 'localhost');
-define('APP_DB_NAME', 'WilderEvent');
