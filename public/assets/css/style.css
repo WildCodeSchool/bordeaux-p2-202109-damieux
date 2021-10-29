@@ -1,0 +1,16 @@
+:root {
+    --bleu:blue;
+}
+
+.bg-danger {
+    background-color: var(--bleu)!important;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #F5F5F7;
+ }
+#bootstrap-override .form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
