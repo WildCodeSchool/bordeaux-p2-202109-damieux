@@ -1,16 +1,68 @@
 :root {
-    --bleu:blue;
+    --primary:#ED503A;
+    --secondary:#F5F5F7;
 }
-
-.bg-danger {
-    background-color: var(--bleu)!important;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
-    background: #F5F5F7;
+    background-color: var(--secondary);
  }
 #bootstrap-override .form-control:focus {
-    border-color: #ced4da;
+    border-color:var(--secondary);
     box-shadow: none;
 }
+#bootstrap-override .btn-outline-danger:hover{
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+#bootstrap-override .text-danger {
+    color:var(--primary);
+}
+.slideInUp {
+    animation-name: slideInUp;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+.fadeInRightBig {
+    animation-name: fadeInRightBig;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.fadeInLeftBig {
+    animation-name: fadeInLeftBig;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100%);
+        visibility: visible;
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInLeftBig {
+    0% {
+        opacity: 0;
+        transform: translate3d(-2000px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes fadeInRightBig {
+    0% {
+        opacity:0;
+        transform: translate3d(2000px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+
+
