@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Model\ActivityManager;
 
-
 class ActivityController extends AbstractController
 {
     public function add(): string
@@ -18,10 +17,8 @@ class ActivityController extends AbstractController
             $id = $activityManager->insert($activity);
             header('Location: /activity/addPropose?id=' . $id);
         }
-
         return $this->twig->render('Activity/addActivity.html.twig');
     }
-
 
     public function addPropose(): string
     {
@@ -35,21 +32,17 @@ class ActivityController extends AbstractController
             foreach ($proposes as $content) {
                 $activityManager->insertPropose($content, $_GET['id']);
             }
-            header('Location: /activity/show?id='. $_GET['id']);
-
+            header('Location: /activity/show?id=' . $_GET['id']);
         }
         return $this->twig->render('Activity/addPropose.html.twig');
     }
 
-
     public function show(int $activityId): string
     {
-
         $activityManager = new ActivityManager();
         $activity = $activityManager->selectOneById($activityId);
         $proposes = $activityManager->selectProposeByActivityId($activityId);
 
-        return $this->twig->render('activity/show.html.twig',  ['activity' => $activity, 'proposes' => $proposes]);
-
+        return $this->twig->render('activity/show.html.twig', ['activity' => $activity, 'proposes' => $proposes]);
     }
 }

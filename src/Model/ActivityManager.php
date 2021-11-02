@@ -8,22 +8,23 @@ class ActivityManager extends AbstractManager
 
     public function insert(array $activity): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, description, created_at) VALUES (:title, :description, now())");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . "
+        (title, description, created_at) 
+         VALUES (:title, :description, now())");
         $statement->bindValue(':title', $activity['title'], \PDO::PARAM_STR);
         $statement->bindValue(':description', $activity['description'], \PDO::PARAM_STR);
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
 
-
     public function insertPropose(string $content, int $activityId): void
     {
-        $statement = $this->pdo->prepare("INSERT INTO proposition (content, created_at, activity_id) VALUES (:content, now(), :activity_id)");
+        $statement = $this->pdo->prepare("INSERT INTO proposition
+        (content, created_at, activity_id) VALUES (:content, now(), :activity_id)");
         $statement->bindValue(':content', $content, \PDO::PARAM_STR);
         $statement->bindValue(':activity_id', $activityId, \PDO::PARAM_INT);
         $statement->execute();
     }
-
 
     public function selectProposeByActivityId(int $activityId): array
     {
@@ -32,7 +33,4 @@ class ActivityManager extends AbstractManager
         $statement->execute();
         return $statement->fetchAll();
     }
-
-
-
 }
