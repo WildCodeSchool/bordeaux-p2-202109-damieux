@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Proposition
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" class="m-auto w-75">
+        <div class="mb-3 w-75">
+            <label for="propose" class="form-label">Proposition 1</label>
+            <input type="text" name="propose[]" class="form-control" id="propose">
+        </div>
+
+        <div class="mb-3 w-75">
+            <label for="propose" class="form-label">Proposition 2</label>
+            <input type="text" name="propose[]" class="form-control" id="propose">
+        </div>
+
+        <div class="mb-3 w-75">
+            <label for="propose" class="form-label">Proposition 3</label>
+            <input type="text" name="propose[]" class="form-control" id="propose">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouté</button>
+    </form>
+{% endblock %}
+
+
+
