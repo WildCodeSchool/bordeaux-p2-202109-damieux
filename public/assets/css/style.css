@@ -17,6 +17,7 @@ body {
 #bootstrap-override .text-danger {
     color:var(--primary);
 }
+
 .slideInUp {
     animation-name: slideInUp;
     animation-duration: 2s;

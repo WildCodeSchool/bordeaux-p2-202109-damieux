@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Creation
+{% endblock %}
+
+{% block content %}
+
+   <form method="post" class="m-auto w-75">
+       <div class="mb-3 w-75">
+            <label for="title" class="form-label">Titre</label>
+            <input type="text" name="title" class="form-control" id="title">
+       </div>
+
+       <div class="mb-3 w-75">
+           <label for="description" class="form-label">Description</label>
+           <input type="text" name="description" class="form-control" id="description">
+       </div>
+
+       <button type="submit" class="btn btn-primary">Ajouté</button>
+   </form>
+{% endblock %}
+
+
+
+
+
