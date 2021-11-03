@@ -55,6 +55,8 @@ abstract class AbstractManager
         return $statement->fetch();
     }
 
+
+
     /**
      * Delete row form an ID
      */
