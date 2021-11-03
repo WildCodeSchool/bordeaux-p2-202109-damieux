@@ -14,6 +14,6 @@ return [
     //'items/add' => ['ItemController', 'add',],
     //'items/delete' => ['ItemController', 'delete',],
     'activity/addActivity' => ['ActivityController', 'add',],
-    'activity/addPropose' => ['ActivityController', 'addPropose',],
+    'activity/addPropose' => ['ProposeController', 'addPropose',],
     'activity/show' => ['ActivityController', 'show', ['id'],],
 ];
