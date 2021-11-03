@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Proposition
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" class="m-auto w-75">
+
+        <div class="mb-3 w-75">
+            <input type="text" name="propose[]" class="form-control" id="propose">
+            <input type="hidden" name="activityId" value={{ activity_id }}>
+        </div>
+
+        <div id="container"></div>
+            <button type="button" class="btn btn-outline-danger" onclick="addInput_text()">+</button>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+{% endblock %}
+
+
+
