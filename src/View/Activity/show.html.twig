@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - {{ activity.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ activity.title }}</h1>
+    <p>{{ activity.description }}</p>
+    <ul>
+        {% for propose in proposes %}
+
+        <li>{{ propose.content }}</li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
