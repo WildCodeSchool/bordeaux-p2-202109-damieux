@@ -7,22 +7,15 @@
 {% block content %}
 
     <form method="post" class="m-auto w-75">
-        <div class="mb-3 w-75">
-            <label for="propose" class="form-label">Proposition 1</label>
-            <input type="text" name="propose[]" class="form-control" id="propose">
-        </div>
 
         <div class="mb-3 w-75">
-            <label for="propose" class="form-label">Proposition 2</label>
             <input type="text" name="propose[]" class="form-control" id="propose">
+            <input type="hidden" name="activityId" value={{ activity_id }}>
         </div>
 
-        <div class="mb-3 w-75">
-            <label for="propose" class="form-label">Proposition 3</label>
-            <input type="text" name="propose[]" class="form-control" id="propose">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Ajouté</button>
+        <div id="container"></div>
+            <button type="button" class="btn btn-outline-danger" onclick="addInput_text()">+</button>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 {% endblock %}
 
