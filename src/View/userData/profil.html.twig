@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+
+
+{% block content %}
+
+User : {{ user_data.firstname }} {{ user_data.lastname }}
+    <br>
+    {% if session.user.id == user_data.id %}
+    
+Email : {{ user_data.mail }}
+    <br>
+    {% endif %}
+Github : {{ user_data.github }}
+
+{% endblock %}
