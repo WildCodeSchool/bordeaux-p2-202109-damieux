@@ -8,17 +8,33 @@ class RegisterController extends AbstractController
 {
     public function add(): string
     {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $registerManager = new RegisterManager();
-            $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $userId = $registerManager->create($_POST);
-            $userData = $registerManager->selectOneById($userId);
-            $_SESSION['user'] = $userData;
-            header('Location: /userData/profil?id=' . $userId);
+            if (empty($_POST['firstname'])) {
+                $errors['FirstnameError'] = "le champs prénom doit etre remplie .";
+            }
+            if (empty($_POST['lastname'])) {
+                $errors['LastnameError'] = "le champs nom doit etre remplie.";
+            }
+            if (empty($_POST['mail'])) {
+                $errors['MailError'] = "le champs mail doit etre remplie.";
+            }
+
+            if (empty($_POST['password'])) {
+                $errors['PasswordError'] = "le champs mot de passe  doit etre remplie.";
+            }
+
+
+            if (empty($errors)) {
+                $registerManager = new RegisterManager();
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $userId = $registerManager->create($_POST);
+                $userData = $registerManager->selectOneById($userId);
+                $_SESSION['user'] = $userData;
+                header('Location: /userData/profil?id=' . $userId);
+            }
         }
-        return $this->twig->render('userData/formRegister.html.twig', [
-            'register_succes' => $_GET['add'] ?? null,
-        ]);
+        return $this->twig->render('userData/formRegister.html.twig', ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]);
     }
 
 // voir comment Anthony / Greg ont nommé ces methodes
