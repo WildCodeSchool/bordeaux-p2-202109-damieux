@@ -27,8 +27,7 @@ class RegisterController extends AbstractController
             $registerManager = new RegisterManager();
             $userData = $registerManager->selectOneByEmail($_POST['mail']);
             if (password_verify($_POST['password'], $userData['password'])) {
-                var_dump('ok');
-                //  $_SESSION['register'] = $userData;
+                $_SESSION['register'] = $userData;
             } else {
                 var_dump('not ok');
             }
