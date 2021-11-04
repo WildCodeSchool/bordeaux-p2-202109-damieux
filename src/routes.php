@@ -1,7 +1,8 @@
 <?php
 
 return [
-    //''                      => ['HomeController', 'index',],
+
+    //''                    => ['HomeController', 'index',],
     ''                      => ['RegisterController', 'connect'],
     //'items'               => ['ItemController', 'index',],
     //'items/edit'          => ['ItemController', 'edit', ['id']],

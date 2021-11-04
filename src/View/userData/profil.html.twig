@@ -1,8 +1,12 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+    {{parent()}} - Mon profil
+{% endblock %}
 
 
 {% block content %}
+
 
 User : {{ user_data.firstname }} {{ user_data.lastname }}
     <br>
