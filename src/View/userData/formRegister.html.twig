@@ -5,33 +5,32 @@
 {% endblock %}
 
 {% block content %}
-<div>Créer mon compte</div>
-<div class="row m-auto d-flex justify-content-center mt-5 pt-5 w-75" >
-    <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white" method="post">
-        <i class="far fa-user fa-2x d-flex justify-content-center mb-3"></i>
-        {# NOM #}
-        <div class="form-group form-floating">
-            <input type="text" name="lastname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="Votre nom">
+
+<div class="text-center">
+    <h1>Inscription</h1>
+</div>
+<div class="row m-auto d-flex justify-content-center mt-2 w-75">
+    <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white slideInUp" method="post">
+        <i class="fas fa-user-edit fa-2x d-flex justify-content-center mb-3"></i>
+        <div class="form-group form-floating fadeInLeftBig">
+            <input type="text" name ="firstname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
             <label for="floatingInput">Nom</label>
+
         </div>
-        {# PRENOM #}
-        <div class="form-group form-floating">
-            <input type="text" name="firstname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="Prénom">
+        <div class="form-group form-floating fadeInLeftBig">
+            <input type="text" name ="lastname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
             <label for="floatingInput">Prénom</label>
         </div>
-        {# EMAIL #}
-        <div class="form-group form-floating">
-            <input type="email" name="mail" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="theo.taquet@gmail.com">
+        <div class="form-group form-floating fadeInLeftBig">
+            <input type="text" name="github" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
+            <label for="floatingInput">Pseudo Github</label>
+        </div>
+        <div class="form-group form-floating fadeInLeftBig">
+            <input type="email" name="mail" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
             <label for="floatingInput">Email</label>
         </div>
-        {# GITHUB #}
-        <div class="form-group form-floating">
-            <input type="text" name="github" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="https://github.com/TheoTaquet">
-            <label for="floatingInput">Lien Github</label>
-        </div>
-        {# PASSWORD #}
-        <div class="form-group form-floating">
-            <input type="password" name="password" class="form-control rounded-0 rounded-bottom" id="floatingPassword" placeholder="Password">
+        <div class="form-group form-floating fadeInRightBig">
+            <input type="password" name="password" class="form-control rounded-0 rounded-bottom" id="floatingPassword">
             <label for="floatingPassword">Mot de passe</label>
         </div>
         <div class="d-flex justify-content-center">
