@@ -33,7 +33,7 @@ class RegisterController extends AbstractController
                 var_dump('not ok');
             }
         }
-       return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION,]);
+        return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION,]);
     }
 
     public function logout()
