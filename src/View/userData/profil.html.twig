@@ -6,11 +6,11 @@
 
 
 {% block content %}
-
+    <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" height="150px" width="150px" class="rounded-pill">
 
 User : {{ user_data.firstname }} {{ user_data.lastname }}
     <br>
-    {% if session.user.id == user_data.id %}
+    {% if session.register.id == user_data.id %}
     
 Email : {{ user_data.mail }}
     <br>

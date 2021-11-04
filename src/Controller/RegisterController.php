@@ -20,36 +20,55 @@ class RegisterController extends AbstractController
             if (empty($user['mail'])) {
                 $errors['mailError'] = 'Le champs mail doit être remplie';
             }
+            if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Le format de l'email est invalide";
+            }
             if (empty($user['password'])) {
                 $errors['passwordError'] = 'Le champs mot de passe  doit être remplie';
             }
+            if (strlen($user['password']) < 2) {
+                $errors[] = "Le mot-de-passe doit faire plus de 2 caractéres";
+            }
+            $registerManager = new RegisterManager();
+            $userData = $registerManager->selectOneByEmail($user['mail']);
+            if ($userData !== false) {
+                $errors['mailDouble'] = "L'email est deja utiliser";
+            }
             if (empty($errors)) {
                 $registerManager = new RegisterManager();
-                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $userId = $registerManager->create($_POST);
+                $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+                $userId = $registerManager->create($user);
                 $userData = $registerManager->selectOneById($userId);
-                $_SESSION['user'] = $userData;
+                $_SESSION['register'] = $userData;
                 header('Location: /userData/profil?id=' . $userId);
             }
         }
-        return $this->twig->render(
-            'userData/formRegister.html.twig',
-            ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]
-        );
+            return $this->twig->render(
+                'userData/formRegister.html.twig',
+                ['register_succes' => $_GET['add'] ?? null,
+                    'errors' => $errors]
+            );
     }
 
     public function connect(): string
     {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = array_map('trim', $_POST);
             $registerManager = new RegisterManager();
-            $userData = $registerManager->selectOneByEmail($_POST['mail']);
-            if (password_verify($_POST['password'], $userData['password'])) {
-                $_SESSION['register'] = $userData;
+            $userData = $registerManager->selectOneByEmail($user['mail']);
+            if ($userData !== false) {
+                if (password_verify($user['password'], $userData['password'])) {
+                    $_SESSION['register'] = $userData;
+                    header('Location: /activity/addActivity');
+                } else {
+                    $errors['idIncorrect'] = 'Vos identifiants sont incorrects';
+                }
             } else {
-                var_dump('not ok');
+                $errors['idIncorrect'] = 'Vos identifiants sont incorrects';
             }
         }
-        return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION,]);
+        return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION, 'errors' => $errors]);
     }
 
     public function logout()
