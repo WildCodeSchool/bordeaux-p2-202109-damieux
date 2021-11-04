@@ -19,7 +19,9 @@
 
 <body id="bootstrap-override">
     {%  include 'Components/_navBar.html.twig'%}
-
+    {% if session.register is not empty %}
+    <div> Bonjour {{ session.register.firstname}}</div>
+    {% endif %}
     {% block content %}
 
     {% endblock %}
