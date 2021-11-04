@@ -34,7 +34,10 @@ class RegisterController extends AbstractController
                 header('Location: /userData/profil?id=' . $userId);
             }
         }
-        return $this->twig->render('userData/formRegister.html.twig', ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]);
+        return $this->twig->render(
+            'userData/formRegister.html.twig',
+            ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]
+        );
     }
 
 // voir comment Anthony / Greg ont nommé ces methodes
