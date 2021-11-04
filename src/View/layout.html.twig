@@ -20,7 +20,12 @@
 <body id="bootstrap-override">
     {%  include 'Components/_navBar.html.twig'%}
 
-    {% block content %}{% endblock %}
+    {% if session.register is not empty %}
+    <div> Bonjour {{ session.register.firstname}}</div>
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
 
     {% include "Components/_footer.html.twig" %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
