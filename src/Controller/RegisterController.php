@@ -10,21 +10,19 @@ class RegisterController extends AbstractController
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['firstname'])) {
-                $errors['FirstnameError'] = "le champs prénom doit etre remplie .";
+            $user = array_map('trim', $_POST);
+            if (empty($user['firstname'])) {
+                $errors['firstnameError'] = 'Le champs prénom doit être remplie';
             }
-            if (empty($_POST['lastname'])) {
-                $errors['LastnameError'] = "le champs nom doit etre remplie.";
+            if (empty($user['lastname'])) {
+                $errors['lastnameError'] = 'Le champs nom doit être remplie';
             }
-            if (empty($_POST['mail'])) {
-                $errors['MailError'] = "le champs mail doit etre remplie.";
+            if (empty($user['mail'])) {
+                $errors['mailError'] = 'Le champs mail doit être remplie';
             }
-
-            if (empty($_POST['password'])) {
-                $errors['PasswordError'] = "le champs mot de passe  doit etre remplie.";
+            if (empty($user['password'])) {
+                $errors['passwordError'] = 'Le champs mot de passe  doit être remplie';
             }
-
-
             if (empty($errors)) {
                 $registerManager = new RegisterManager();
                 $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
