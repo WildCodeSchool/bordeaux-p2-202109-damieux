@@ -2,10 +2,17 @@
     --primary:#ED503A;
     --secondary:#F5F5F7;
 }
+h1, h2, h3 {
+    font-family: 'Nunito', sans-serif;
+}
+
+li, ul {
+    list-style: none;
+}
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--secondary);
- }
+}
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
     box-shadow: none;

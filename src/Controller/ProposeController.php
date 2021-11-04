@@ -8,21 +8,27 @@ class ProposeController extends AbstractController
 {
     public function addPropose(): string
     {
-
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
             $proposes = array_map('trim', $_POST['propose']);
-
-            // TODO validations (length, format...)
-
-            $proposeManager = new ProposeManager();
-            foreach ($proposes as $content) {
-                $proposeManager->insertPropose($content, $_POST['activityId']);
+            foreach ($proposes as $propose) {
+                if (empty($propose)) {
+                    $errors['empty_propose'] = 'Toutes les proposition(s) doivent être remplie';
+                }
+                if (strlen($propose) < 2) {
+                    $errors['car_propose'] = 'Toutes les proposition(s) doivent faire plus de 2 caractères';
+                }
             }
-
-            header('Location: /activity/show?id=' . $_GET['id']);
+            if (empty($errors)) {
+                $proposeManager = new ProposeManager();
+                foreach ($proposes as $content) {
+                    $proposeManager->insertPropose($content, $_POST['activityId']);
+                }
+                header('Location: /activity/show?id=' . $_GET['id']);
+            }
         }
         $activityId = $_GET['id'];
-        return $this->twig->render('Activity/addPropose.html.twig', ['activity_id' => $activityId]);
+        return $this->twig->render('Activity/addPropose.html.twig', ['activity_id' => $activityId,
+            'errors' => $errors]);
     }
 }
