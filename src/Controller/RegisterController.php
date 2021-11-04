@@ -37,17 +37,15 @@ class RegisterController extends AbstractController
         return $this->twig->render('userData/formRegister.html.twig', ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]);
     }
 
-// voir comment Anthony / Greg ont nommé ces methodes
-
     public function connect(): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $registerManager = new RegisterManager();
-            $userData = $registerManager->selectOneById($_POST['mail']);
-            if (password_verify($_POST['mail'], $userData['password'])) {
-                    $_SESSION['register'] = $userData;
+            $userData = $registerManager->selectOneByEmail($_POST['mail']);
+            if (password_verify($_POST['password'], $userData['password'])) {
+                $_SESSION['register'] = $userData;
             } else {
-                var_dump('ok');
+                var_dump('not ok');
             }
         }
         return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION,]);
