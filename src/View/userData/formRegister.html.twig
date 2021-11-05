@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
-
-<div class="text-center">
+<div class="text-center mt-5">
     <h1>Inscription</h1>
 </div>
     {% for error in errors %}
@@ -17,23 +15,23 @@
             </ul>
         </div>
     {% endfor %}
-<div class="row m-auto d-flex justify-content-center mt-2 w-75">
-    <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white slideInUp" method="post">
+<div class="row m-auto d-flex justify-content-center mt-4 w-75">
+    <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white" method="post">
         <i class="fas fa-user-edit fa-2x d-flex justify-content-center mb-3"></i>
         <div class="form-group form-floating fadeInRightBig">
-            <input type="text" name ="firstname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
+            <input type="text" name="lastname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
             <label for="floatingInput">Nom</label>
         </div>
         <div class="form-group form-floating fadeInLeftBig">
-            <input type="text" name ="lastname" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
+            <input type="text" name="firstname" class="form-control border-bottom-0 rounded-0" id="floatingInput">
             <label for="floatingInput">Prénom</label>
         </div>
         <div class="form-group form-floating fadeInRightBig">
-            <input type="text" name="github" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
+            <input type="text" name="github" class="form-control border-bottom-0 rounded-0 " id="floatingInput">
             <label for="floatingInput">Pseudo Github</label>
         </div>
         <div class="form-group form-floating fadeInLeftBig">
-            <input type="email" name="mail" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput">
+            <input type="email" name="mail" class="form-control border-bottom-0 rounded-0" id="floatingInput">
             <label for="floatingInput">Email</label>
         </div>
         <div class="form-group form-floating fadeInRightBig">

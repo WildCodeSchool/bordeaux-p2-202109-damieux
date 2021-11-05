@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block content %}
+    {% if session.register is not empty %}
+        <div class="d-flex justify-content-end mt-5 mx-4">
+            <p>Connecter en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        </div>
+    {% endif %}
     <div class="card text-dark bg-light mb-3 m-auto w-75 mt-5">
-        <div class="card-header text-center mb-3">
+        <div class="card-header text-center">
             <h1>Créer une activité</h1>
         </div>
         {% for error in errors %}
-            <div class="bg-danger opacity-75 m-auto w-50 m-auto text-center mb-2">
+            <div class="bg-danger opacity-75 m-auto w-50 m-auto text-center mb-2 mt-3 fadeInLeftBig">
                 <ul>
                     <li class="text-light p-1">{{ error }}</li>
                 </ul>
