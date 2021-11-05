@@ -21,13 +21,13 @@ class RegisterController extends AbstractController
                 $errors['mailError'] = 'Le champ mail doit être rempli';
             }
             if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
-                $errors[] = "Le format de l'email est invalide";
+                $errors['formatEmail'] = "Le format de l'email est invalide";
             }
             if (empty($user['password'])) {
                 $errors['passwordError'] = 'Le champ mot de passe doit être rempli';
             }
-            if (strlen($user['password']) < 2) {
-                $errors[] = "Le mot de passe doit faire plus de 2 caractères";
+            if (strlen($user['password']) < 4) {
+                $errors['formatPassword'] = "Le mot-de-passe doit faire plus de 2 caractéres";
             }
             $registerManager = new RegisterManager();
             $userData = $registerManager->selectOneByEmail($user['mail']);
@@ -62,10 +62,10 @@ class RegisterController extends AbstractController
                     $_SESSION['register'] = $userData;
                     header('Location: /activity/addActivity');
                 } else {
-                    $errors['idIncorrect'] = 'Vos identifiants sont incorrects';
+                    $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
                 }
             } else {
-                $errors['idIncorrect'] = 'Vos identifiants sont incorrects';
+                $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
             }
         }
         return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION, 'errors' => $errors]);

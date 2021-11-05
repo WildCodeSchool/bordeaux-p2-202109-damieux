@@ -6,19 +6,15 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4">
-            <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        <div>
+            <p>Connecter en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-
     <h1>{{ activity.title }}</h1>
     <p>{{ activity.description }}</p>
     <ul>
         {% for propose in proposes %}
-
         <li>{{ propose.content }}</li>
-
         {% endfor %}
     </ul>
-
 {% endblock %}
