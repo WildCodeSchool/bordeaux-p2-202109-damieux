@@ -7,7 +7,7 @@
 {% block content %}
     {% if session.register is not empty %}
         <div class="d-flex justify-content-end mt-5 mx-4">
-            <p>Connecter en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+            <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
     <div class="card text-dark bg-light mb-3 m-auto w-75 mt-5">
