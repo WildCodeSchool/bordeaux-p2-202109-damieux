@@ -13,16 +13,16 @@ class ActivityController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $activity = array_map('trim', $_POST);
             if (empty($activity['title'])) {
-                $errors['empty_title'] = 'Le titre doit être remplie';
+                $errors['empty_title'] = 'Le titre doit être rempli';
             }
             if (empty($activity['description'])) {
                 $errors['description_vide'] = 'La description doit être remplie';
             }
             if (strlen($activity['title']) < 2) {
-                $errors['title_car'] = 'Le titre doit faire plus de 2 caractéres';
+                $errors['title_car'] = 'Le titre doit faire plus de 2 caractères';
             }
             if (strlen($activity['description']) < 2) {
-                $errors['description_car'] = 'La description doit faire plus de 2 caractéres';
+                $errors['description_car'] = 'La description doit faire plus de 2 caractères';
             }
             if (empty($errors)) {
                 $activityManager = new ActivityManager();

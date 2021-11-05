@@ -12,27 +12,27 @@ class RegisterController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = array_map('trim', $_POST);
             if (empty($user['firstname'])) {
-                $errors['firstnameError'] = 'Le champs prénom doit être remplie';
+                $errors['firstnameError'] = 'Le champ prénom doit être rempli';
             }
             if (empty($user['lastname'])) {
-                $errors['lastnameError'] = 'Le champs nom doit être remplie';
+                $errors['lastnameError'] = 'Le champ nom doit être rempli';
             }
             if (empty($user['mail'])) {
-                $errors['mailError'] = 'Le champs mail doit être remplie';
+                $errors['mailError'] = 'Le champ mail doit être rempli';
             }
             if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "Le format de l'email est invalide";
             }
             if (empty($user['password'])) {
-                $errors['passwordError'] = 'Le champs mot de passe  doit être remplie';
+                $errors['passwordError'] = 'Le champ mot de passe doit être rempli';
             }
             if (strlen($user['password']) < 2) {
-                $errors[] = "Le mot-de-passe doit faire plus de 2 caractéres";
+                $errors[] = "Le mot de passe doit faire plus de 2 caractères";
             }
             $registerManager = new RegisterManager();
             $userData = $registerManager->selectOneByEmail($user['mail']);
             if ($userData !== false) {
-                $errors['mailDouble'] = "L'email est deja utiliser";
+                $errors['mailDouble'] = "L'email est déjà utilisé";
             }
             if (empty($errors)) {
                 $registerManager = new RegisterManager();
