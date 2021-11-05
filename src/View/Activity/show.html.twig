@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - {{ activity.title }}
+{% endblock %}
+
+{% block content %}
+    {% if session.register is not empty %}
+        <div>
+            <p>Connecter en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        </div>
+    {% endif %}
+    <h1>{{ activity.title }}</h1>
+    <p>{{ activity.description }}</p>
+    <ul>
+        {% for propose in proposes %}
+        <li>{{ propose.content }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
