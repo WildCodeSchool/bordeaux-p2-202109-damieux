@@ -13,7 +13,7 @@ class ProposeController extends AbstractController
             $proposes = array_map('trim', $_POST['propose']);
             foreach ($proposes as $propose) {
                 if (empty($propose)) {
-                    $errors['empty_propose'] = 'Toutes les proposition(s) doivent être remplie';
+                    $errors['empty_propose'] = 'Toutes les proposition(s) doivent être remplies';
                 }
                 if (strlen($propose) < 2) {
                     $errors['car_propose'] = 'Toutes les proposition(s) doivent faire plus de 2 caractères';
