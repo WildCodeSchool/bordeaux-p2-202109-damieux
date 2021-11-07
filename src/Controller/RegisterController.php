@@ -27,11 +27,11 @@ class RegisterController extends AbstractController
                 $errors['passwordError'] = 'Le champs mot de passe  doit être remplie';
             }
             if (strlen($user['password']) < 4) {
-                $errors['formatPassword'] = "Le mot-de-passe doit faire plus de 2 caractéres";
+                $errors['formatPassword'] = 'Le mot-de-passe doit faire plus de 2 caractéres';
             }
             $registerManager = new RegisterManager();
             $userData = $registerManager->selectOneByEmail($user['mail']);
-            if ($userData !== false) {
+            if ($userData) {
                 $errors['mailDouble'] = "L'email est deja utiliser";
             }
             if (empty($errors)) {
@@ -57,7 +57,7 @@ class RegisterController extends AbstractController
             $user = array_map('trim', $_POST);
             $registerManager = new RegisterManager();
             $userData = $registerManager->selectOneByEmail($user['mail']);
-            if ($userData !== false) {
+            if ($userData) {
                 if (password_verify($user['password'], $userData['password'])) {
                     $_SESSION['register'] = $userData;
                     header('Location: /activity/addActivity');

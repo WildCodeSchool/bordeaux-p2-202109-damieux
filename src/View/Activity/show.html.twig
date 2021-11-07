@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div>
+        <div class="d-flex justify-content-end mt-5 mx-4">
             <p>Connecter en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}

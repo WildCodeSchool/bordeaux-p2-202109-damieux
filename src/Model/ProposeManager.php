@@ -15,7 +15,7 @@ class ProposeManager extends AbstractManager
         $statement->execute();
     }
 
-    public function selectProposeByActivityId(int $activityId): array
+    public function selectProposesByActivityId(int $activityId): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . self::TABLE . " WHERE activity_id=:activityId");
         $statement->bindValue('activityId', $activityId, \PDO::PARAM_INT);
