@@ -6,28 +6,26 @@
 
 
 {% block content %}
-    <div class="card m-auto w-50 mt-5" xmlns="http://www.w3.org/1999/html">
+    <div class="card m-auto w-50 mt-5 bg-opacity-25 bg-light col col-lg-4 col-md-6 col-sm-10" xmlns="http://www.w3.org/1999/html">
         <div class="m-auto card-body">
-            <h1 class="card-title">{{ user_data.firstname }}</h1>
-            <div>
-                <i class="far fa-user fa-4x d-flex justify-content-center mb-3"></i>
+            <div class="text-center">
+                <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" width="150px" height="150px" alt="profile">
             </div>
-            <ul class="card-text h1 Bootstrap heading">
-            <li>Prénom : {{ user_data.lastname }}</li>
-            <li>Nom : {{ user_data.firstname }}</li>
-            {% if session.register.id == user_data.id %}
-                <li>Email : {{ user_data.mail }}</li>
-            {% endif %}
-            <li>GitHub : {{ user_data.github }}</li>
+            <ul class="card-text text-center">
+                <li  class="fs-5">Prénom : {{ user_data.lastname }}</li>
+                <li  class="fs-5">Nom : {{ user_data.firstname }}</li>
+                {% if session.register.id == user_data.id %}
+                    <li class="fs-5">Email : {{ user_data.mail }}</li>
+                {% endif %}
+                <li  class="fs-5">GitHub : {{ user_data.github }}</li>
             </ul>
         </div>
     </div>
-
     <div class="accordion m-auto w-50 mt-5" id="accordionExample">
-        <div class="accordion-item h-50">
+        <div class="accordion-item mb-5">
             <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button bg-info text-white mb-4 collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne ">
-                    <p class="m-auto h4 Bootstrap heading">Activités à venir</p>
+                <button class="accordion-button bg-danger text-white collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne ">
+                    <p class="m-auto fs-4 ">Activités à venir</p>
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -36,10 +34,10 @@
                 </div>
             </div>
         </div>
-        <div class="accordion-item">
+        <div class="accordion-item mb-5">
             <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed bg-success text-white mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <p class="m-auto h4 Bootstrap heading"> Activités accomplies</p>
+                <button class="accordion-button collapsed bg-success text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <p class="m-auto fs-4"> Activités accomplies</p>
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -51,7 +49,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed bg-warning text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <p class="m-auto h4 Bootstrap heading"> Activités proposées </p>
+                    <p class="m-auto fs-4"> Activités proposées </p>
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\RegisterManager;
+use App\Service\RegisterFormValidator;
 
 class RegisterController extends AbstractController
 {
@@ -10,30 +11,23 @@ class RegisterController extends AbstractController
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user = array_map('trim', $_POST);
-            if (empty($user['firstname'])) {
-                $errors['firstnameError'] = 'Le champ prénom doit être rempli';
-            }
-            if (empty($user['lastname'])) {
-                $errors['lastnameError'] = 'Le champ nom doit être rempli';
-            }
-            if (empty($user['mail'])) {
-                $errors['mailError'] = 'Le champ mail doit être rempli';
-            }
-            if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
-                $errors['formatEmail'] = "Le format de l'email est invalide";
-            }
-            if (empty($user['password'])) {
-                $errors['passwordError'] = 'Le champ mot de passe doit être rempli';
-            }
-            if (strlen($user['password']) < 4) {
-                $errors['formatPassword'] = 'Le mot-de-passe doit faire plus de 2 caractéres';
-            }
-            $registerManager = new RegisterManager();
-            $userData = $registerManager->selectOneByEmail($user['mail']);
-            if ($userData) {
-                $errors['mailDouble'] = "L'email est deja utiliser";
-            }
+            $formValidator = new RegisterFormValidator($_POST);
+            $formValidator->trimAll();
+            $user = $formValidator->getPosts();
+            $toCheckInputs = [
+                'firstname' => 'Le prénom',
+                'lastname'  => 'le nom',
+                'mail'      => 'le mail',
+                'password'  => 'le mot de passe',
+                'github'    => 'le pseudo github'
+             ];
+            $formValidator->checkEmptyInputs($toCheckInputs);
+            $formValidator->checkLength($_POST['password'], 'le mot de passe', 6, 255);
+     //       if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
+      //          $errors['formatEmail'] = "Le format de l'email est invalide";
+       //     }
+            $formValidator->checkIfMailAlreadyExists($user['mail']);
+            $errors = $formValidator->getErrors();
             if (empty($errors)) {
                 $registerManager = new RegisterManager();
                 $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
@@ -60,7 +54,7 @@ class RegisterController extends AbstractController
             if ($userData) {
                 if (password_verify($user['password'], $userData['password'])) {
                     $_SESSION['register'] = $userData;
-                    header('Location: /activity/addActivity');
+                    header('Location: /activity/showAll');
                 } else {
                     $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
                 }

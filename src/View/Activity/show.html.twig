@@ -6,19 +6,19 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4">
+        <div class="d-flex justify-content-end mt-5 mx-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="card border-dark mt-3 col col-lg-4 col-md-6 col-sm-10 m-auto w-75">
+    <div class="card mt-3 col col-lg-4 col-md-6 col-sm-10 m-auto w-75 bg-light bg-opacity-25">
         <div class="card-header text-center">
             <h1>{{ activity.title }}</h1>
         </div>
         <div class="card-body text-dark">
-            <div class="fs-4 text-center">
+            <div class="fs-3 text-center">
                 <p>{{ activity.description }}</p>
             </div>
-            <div class="text-center p-2">
+            <div class="text-center p-2 fs-4">
                 <p>Voici les propositions pour cette activité :</p>
             </div>
             <div class="d-flex justify-content-center">
@@ -33,7 +33,4 @@
             </div>
         </div>
     </div>
-
-
-
 {% endblock %}

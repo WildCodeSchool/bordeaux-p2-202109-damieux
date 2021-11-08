@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4">
+        <div class="d-flex justify-content-end mt-5 mx-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
@@ -14,7 +14,6 @@
     <div class="card-header text-center">
         <h1>EVENEMENTS</h1>
     </div>
-
                 {% for activity in activities %}
 
     <div class="card mb-3 d-inline-flex m-3 " >
