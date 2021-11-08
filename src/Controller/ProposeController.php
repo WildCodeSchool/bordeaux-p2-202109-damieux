@@ -24,7 +24,7 @@ class ProposeController extends AbstractController
                 foreach ($proposes as $content) {
                     $proposeManager->insertPropose($content, $_POST['activityId']);
                 }
-                header('Location: /activity/show?id=' . $_GET['id']);
+                header('Location: /activite/afficher?id=' . $_GET['id']);
             }
         }
         $activityId = $_GET['id'];
