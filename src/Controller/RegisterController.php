@@ -10,48 +10,65 @@ class RegisterController extends AbstractController
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['firstname'])) {
-                $errors['FirstnameError'] = "le champs prénom doit etre remplie .";
+            $user = array_map('trim', $_POST);
+            if (empty($user['firstname'])) {
+                $errors['firstnameError'] = 'Le champ prénom doit être rempli';
             }
-            if (empty($_POST['lastname'])) {
-                $errors['LastnameError'] = "le champs nom doit etre remplie.";
+            if (empty($user['lastname'])) {
+                $errors['lastnameError'] = 'Le champ nom doit être rempli';
             }
-            if (empty($_POST['mail'])) {
-                $errors['MailError'] = "le champs mail doit etre remplie.";
+            if (empty($user['mail'])) {
+                $errors['mailError'] = 'Le champ mail doit être rempli';
             }
-
-            if (empty($_POST['password'])) {
-                $errors['PasswordError'] = "le champs mot de passe  doit etre remplie.";
+            if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
+                $errors['formatEmail'] = "Le format de l'email est invalide";
             }
-
-
+            if (empty($user['password'])) {
+                $errors['passwordError'] = 'Le champ mot de passe doit être rempli';
+            }
+            if (strlen($user['password']) < 4) {
+                $errors['formatPassword'] = 'Le mot-de-passe doit faire plus de 2 caractéres';
+            }
+            $registerManager = new RegisterManager();
+            $userData = $registerManager->selectOneByEmail($user['mail']);
+            if ($userData) {
+                $errors['mailDouble'] = "L'email est deja utiliser";
+            }
             if (empty($errors)) {
                 $registerManager = new RegisterManager();
-                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $userId = $registerManager->create($_POST);
+                $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+                $userId = $registerManager->create($user);
                 $userData = $registerManager->selectOneById($userId);
-                $_SESSION['user'] = $userData;
+                $_SESSION['register'] = $userData;
                 header('Location: /userData/profil?id=' . $userId);
             }
         }
-        return $this->twig->render(
-            'userData/formRegister.html.twig',
-            ['register_succes' => $_GET['add'] ?? null, 'errors' => $errors]
-        );
+            return $this->twig->render(
+                'userData/formRegister.html.twig',
+                ['register_succes' => $_GET['add'] ?? null,
+                    'errors' => $errors]
+            );
     }
 
     public function connect(): string
     {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = array_map('trim', $_POST);
             $registerManager = new RegisterManager();
-            $userData = $registerManager->selectOneByEmail($_POST['mail']);
-            if (password_verify($_POST['password'], $userData['password'])) {
-                $_SESSION['register'] = $userData;
+            $userData = $registerManager->selectOneByEmail($user['mail']);
+            if ($userData) {
+                if (password_verify($user['password'], $userData['password'])) {
+                    $_SESSION['register'] = $userData;
+                    header('Location: /activity/addActivity');
+                } else {
+                    $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
+                }
             } else {
-                var_dump('not ok');
+                $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
             }
         }
-        return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION,]);
+        return $this->twig->render('Home/index.html.twig', ['session' => $_SESSION, 'errors' => $errors]);
     }
 
     public function logout()

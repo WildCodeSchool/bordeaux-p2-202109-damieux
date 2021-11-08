@@ -5,14 +5,35 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ activity.title }}</h1>
-    <p>{{ activity.description }}</p>
-    <ul>
-        {% for propose in proposes %}
+    {% if session.register is not empty %}
+        <div class="d-flex justify-content-end mt-5 mx-4">
+            <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        </div>
+    {% endif %}
+    <div class="card border-dark mt-3 col col-lg-4 col-md-6 col-sm-10 m-auto w-75">
+        <div class="card-header text-center">
+            <h1>{{ activity.title }}</h1>
+        </div>
+        <div class="card-body text-dark">
+            <div class="fs-4 text-center">
+                <p>{{ activity.description }}</p>
+            </div>
+            <div class="text-center p-2">
+                <p>Voici les propositions pour cette activité :</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                {% for propose in proposes %}
+                    <form method="post" class="m-1">
+                        <button type="submit" class="btn btn-outline-danger rounded-pill">{{ propose.content }}</button>
+                    </form>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-start mt-3">
+                <p>Créer par {{ user_data.firstname }} {{ user_data.lastname }}</p>
+            </div>
+        </div>
+    </div>
 
-        <li>{{ propose.content }}</li>
 
-        {% endfor %}
-    </ul>
 
 {% endblock %}

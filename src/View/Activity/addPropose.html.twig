@@ -5,29 +5,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="bg-danger opacity-75 m-auto w-50 rounded text-center mt-5">
-        <ul>
-            {% for error in errors %}
-                <li class="text-light p-1">{{ error }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="card text-dark bg-light mb-3 m-auto w-75 mt-5">
-        <div class="card-header text-center">
+    {% if session.register is not empty %}
+        <div class="d-flex justify-content-end mt-5 mx-4">
+            <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        </div>
+    {% endif %}
+    <div class="card text-dark bg-light mb-3 m-auto w-75 mt-3">
+        <div class="card-header text-center mb-3">
             <h1>Proposition(s) :</h1>
         </div>
+        {% for error in errors %}
+            <div class="m-auto text-center mt-2">
+                <p class="text-danger">{{ error }}</p>
+            </div>
+        {% endfor %}
         <div class="card-body">
             <form class="col col-lg-4 col-md-6 col-sm-10 m-auto" method="post">
                 <div class="form-group d-flex justify-content-end">
-                    <input type="text" name="propose[]" class="form-control border-0 border-bottom mb-3" id="propose" autofocus>
+                    <input type="text" name="propose[]" class="form-control border-0 border-bottom mb-2" id="propose" autofocus>
                     <input type="hidden" name="activityId" value={{ activity_id }}>
                 </div>
                 <div id="container"></div>
-                <button type="button" class="btn btn-outline-danger rounded-pill m-2" onclick="addInput_text()">+</button>
-                <button type="submit" class="btn btn-outline-danger rounded-pill m-2">Ajouter</button>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-danger rounded-pill m-2" onclick="addInput()">+</button>
+                    <button type="submit" class="btn btn-outline-danger rounded-pill m-2">Ajouter</button>
+                </div>
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/assets/js/script.js"></script>
 {% endblock %}
 
 
