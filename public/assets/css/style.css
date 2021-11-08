@@ -12,7 +12,8 @@ li, ul {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--secondary);
+    background-image: url("/assets/images/background.jpg");
+    background-size: cover;
 }
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
