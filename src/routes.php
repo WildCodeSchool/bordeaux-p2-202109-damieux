@@ -11,6 +11,7 @@ return [
     'activity/addActivity'  => ['ActivityController', 'add',],
     'activity/addPropose'   => ['ProposeController', 'addPropose',],
     'activity/show'         => ['ActivityController', 'show', ['id'],],
+    'activity/showAll'      => ['ActivityController', 'showAll', ['id'],],
     'userData/inscription'  => ['RegisterController', 'add',],
     'logout'                => ['RegisterController', 'logout'],
     'userData/profil'       => ['RegisterController', 'profil', ['id']],

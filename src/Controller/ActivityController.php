@@ -16,16 +16,16 @@ class ActivityController extends AbstractController
             $activities = array_map('trim', $_POST);
             $activities['user_id'] = $userId;
             if (empty($activities['title'])) {
-                $errors['empty_title'] = 'Le titre doit être remplie';
+                $errors['empty_title'] = 'Le titre doit être rempli';
             }
             if (empty($activities['description'])) {
                 $errors['description_vide'] = 'La description doit être remplie';
             }
             if (strlen($activities['title']) < 2) {
-                $errors['title_car'] = 'Le titre doit faire plus de 2 caractéres';
+                $errors['title_car'] = 'Le titre doit contenir plus de 2 caractères';
             }
             if (strlen($activities['description']) < 2) {
-                $errors['description_car'] = 'La description doit faire plus de 2 caractéres';
+                $errors['description_car'] = 'La description doit contenir plus de 2 caractères';
             }
             if (empty($errors)) {
                 $activityManager = new ActivityManager();
@@ -50,6 +50,18 @@ class ActivityController extends AbstractController
             ['activity' => $activity,
                 'proposes' => $proposes,
                 'user_data' => $userData]
+        );
+    }
+
+    // AFFICHAGE DE TOUTES LES ACTIVITES (TITRE + DESCRIPTION)
+    public function showAll(): string
+    {
+        $activityManager = new ActivityManager();
+        $activities = $activityManager->selectAll();
+
+        return $this->twig->render(
+            'Activity/showAll.html.twig',
+            ['activities' => $activities]
         );
     }
 }
