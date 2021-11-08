@@ -8,13 +8,6 @@
 <div class="text-center mt-5">
     <h1>Inscription</h1>
 </div>
-    {% for error in errors %}
-        <div class="bg-danger opacity-75 m-auto w-50 text-center">
-            <ul>
-                <li class="text-light p-1">{{ error }}</li>
-            </ul>
-        </div>
-    {% endfor %}
 <div class="row m-auto d-flex justify-content-center mt-4 w-75">
     <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white" method="post">
         <i class="fas fa-user-edit fa-2x d-flex justify-content-center mb-3"></i>
@@ -38,6 +31,11 @@
             <input type="password" name="password" class="form-control rounded-0 rounded-bottom" id="floatingPassword">
             <label for="floatingPassword">Mot de passe</label>
         </div>
+        {% for error in errors %}
+            <div class="m-auto text-center">
+                <p class="text-danger">{{ error }}</p>
+            </div>
+        {% endfor %}
         <div class="d-flex justify-content-center">
             <button class="rounded-pill border-2 btn btn-outline-danger btn-sm mb-3 mt-4 p-2" type="submit">Je m'inscris</button>
         </div>

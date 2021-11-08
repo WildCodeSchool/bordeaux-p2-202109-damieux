@@ -12,6 +12,11 @@
         </div>
         <form class="col col-lg-4 col-md-6 col-sm-10 border rounded p-4 bg-white slideInUp" method="post">
             <i class="far fa-user fa-2x d-flex justify-content-center mb-3"></i>
+            {% for error in errors %}
+                <div class="m-auto mt-3 text-center">
+                    <p class="text-danger">{{ error }}</p>
+                </div>
+            {% endfor %}
             <div class="form-group form-floating fadeInLeftBig">
                 <input type="email" name="mail" class="form-control border-bottom-0 rounded-0 rounded-top" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Email</label>
@@ -26,13 +31,6 @@
             <p class="text-center">Pas encore inscrit ? <a href="/userData/inscription/" class="text-decoration-none text-danger">Créer un compte</a>
         </form>
     </div>
-    {% for error in errors %}
-        <div class="bg-danger opacity-75 m-auto w-25 mt-3 text-center">
-            <ul>
-                <li class="text-light p-1">{{ error }}</li>
-            </ul>
-        </div>
-    {% endfor %}
 {% endblock %}
 
 

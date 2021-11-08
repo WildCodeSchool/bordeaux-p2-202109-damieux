@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Model\ActivityManager;
 use App\Model\ProposeManager;
+use App\Model\RegisterManager;
 
 class ActivityController extends AbstractController
 {
     public function add(): string
     {
         $errors = [];
+        $userId = $_SESSION['register']['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $activities = array_map('trim', $_POST);
+            $activities['user_id'] = $userId;
             if (empty($activities['title'])) {
                 $errors['empty_title'] = 'Le titre doit être remplie';
             }
@@ -37,9 +40,16 @@ class ActivityController extends AbstractController
     {
         $activityManager = new ActivityManager();
         $proposeManager = new ProposeManager();
+        $registerManager = new RegisterManager();
         $activity = $activityManager->selectOneById($activityId);
         $proposes = $proposeManager->selectProposesByActivityId($activityId);
+        $userData = $registerManager->selectOneById($activityId);
 
-        return $this->twig->render('Activity/show.html.twig', ['activity' => $activity, 'proposes' => $proposes]);
+        return $this->twig->render(
+            'Activity/show.html.twig',
+            ['activity' => $activity,
+                'proposes' => $proposes,
+                'user_data' => $userData]
+        );
     }
 }
