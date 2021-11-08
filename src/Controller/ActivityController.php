@@ -42,8 +42,9 @@ class ActivityController extends AbstractController
         $proposeManager = new ProposeManager();
         $registerManager = new RegisterManager();
         $activity = $activityManager->selectOneById($activityId);
+        $creatorIid = $activity['user_id'];
         $proposes = $proposeManager->selectProposesByActivityId($activityId);
-        $userData = $registerManager->selectOneById($activityId);
+        $userData = $registerManager->selectOneById($creatorIid);
 
         return $this->twig->render(
             'Activity/show.html.twig',

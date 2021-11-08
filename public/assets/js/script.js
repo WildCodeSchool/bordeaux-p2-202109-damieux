@@ -8,7 +8,7 @@ function addInput()
     input.setAttribute("name", "propose[]");
     input.setAttribute("type", "text");
     input.setAttribute("id", id);
-    input.setAttribute("class", 'form-control border rounded mb-3');
+    input.setAttribute("class", 'form-control border-0 border-bottom mb-2');
     paragraph.appendChild(input);
     container.appendChild(paragraph);
 }
