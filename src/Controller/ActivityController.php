@@ -5,35 +5,35 @@ namespace App\Controller;
 use App\Model\ActivityManager;
 use App\Model\ProposeManager;
 use App\Model\RegisterManager;
+use App\Service\FormValidator;
 
 class ActivityController extends AbstractController
 {
     public function add(): string
     {
         $errors = [];
-        $userId = $_SESSION['register']['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $activities = array_map('trim', $_POST);
-            $activities['user_id'] = $userId;
-            if (empty($activities['title'])) {
-                $errors['empty_title'] = 'Le titre doit être rempli';
-            }
-            if (empty($activities['description'])) {
-                $errors['description_vide'] = 'La description doit être remplie';
-            }
-            if (strlen($activities['title']) < 2) {
-                $errors['title_car'] = 'Le titre doit contenir plus de 2 caractères';
-            }
-            if (strlen($activities['description']) < 2) {
-                $errors['description_car'] = 'La description doit contenir plus de 2 caractères';
-            }
+            $formValidator = new FormValidator($_POST);
+            $formValidator->trimAll();
+            $toCheckInputs = [
+                'title'       => 'Le titre',
+                'description' => 'La description'
+            ];
+            $formValidator->checkEmptyInputs($toCheckInputs);
+            $formValidator->checkLength($_POST['title'], 'Le titre', 2, 255);
+            $formValidator->checkLength($_POST['description'], 'La description', 2, 2500);
+            $errors = $formValidator->getErrors();
+            $activities = $formValidator->getPosts();
+            $activities['user_id'] = $_SESSION['register']['id'];
             if (empty($errors)) {
                 $activityManager = new ActivityManager();
                 $id = $activityManager->insert($activities);
                 header('Location: /activity/addPropose?id=' . $id);
             }
         }
-        return $this->twig->render('Activity/addActivity.html.twig', ['errors' => $errors]);
+        return $this->twig->render('Activity/addActivity.html.twig', [
+            'errors' => $errors
+        ]);
     }
 
     public function show(int $activityId): string
