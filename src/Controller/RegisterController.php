@@ -54,7 +54,7 @@ class RegisterController extends AbstractController
             if ($userData) {
                 if (password_verify($user['password'], $userData['password'])) {
                     $_SESSION['register'] = $userData;
-                    header('Location: /activity/addActivity');
+                    header('Location: /activity/showAll');
                 } else {
                     $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
                 }
