@@ -4,7 +4,7 @@ namespace App\Service;
 
 class FormValidator
 {
-    private array $posts;
+    protected array $posts;
 
     protected array $errors = [];
 

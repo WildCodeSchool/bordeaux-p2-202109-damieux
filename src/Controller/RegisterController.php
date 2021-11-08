@@ -16,16 +16,16 @@ class RegisterController extends AbstractController
             $user = $formValidator->getPosts();
             $toCheckInputs = [
                 'firstname' => 'Le prénom',
-                'lastname'  => 'le nom',
-                'mail'      => 'le mail',
-                'password'  => 'le mot de passe',
-                'github'    => 'le pseudo github'
+                'lastname'  => 'Le nom',
+                'mail'      => 'Le mail',
+                'password'  => 'Le mot de passe',
+                'github'    => 'Le pseudo github'
              ];
             $formValidator->checkEmptyInputs($toCheckInputs);
             $formValidator->checkLength($_POST['password'], 'le mot de passe', 6, 255);
-     //       if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
-      //          $errors['formatEmail'] = "Le format de l'email est invalide";
-       //     }
+            if (!filter_var($user["mail"], FILTER_VALIDATE_EMAIL)) {
+                $errors['formatEmail'] = "Le format de l'email est invalide";
+            }
             $formValidator->checkIfMailAlreadyExists($user['mail']);
             $errors = $formValidator->getErrors();
             if (empty($errors)) {
