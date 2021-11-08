@@ -7,7 +7,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link m-3" href="{{session.register is empty ? '/' : '#' }}"><i class="fab fa-buffer text-danger"></i> Activités</a>
+                <a class="nav-link m-3" href="{{session.register is empty ? '/' : '/activity/showAll' }}"><i class="fab fa-buffer text-danger"></i> Activités</a>
                 <a class="nav-link m-3" href="{{session.register is empty ? '/' : '/activity/addActivity' }}"><i class="far fa-plus-square text-danger"></i> Créer une activité</a>
                 {% if session.register is not empty %}
                 <a class="nav-link m-3" href="/userData/profil?id={{ session.register.id }}"><li class="fas fa-user text-danger"></li> Mon profil</a>
