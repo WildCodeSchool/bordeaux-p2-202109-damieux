@@ -34,7 +34,7 @@ class RegisterController extends AbstractController
                 $userId = $registerManager->create($user);
                 $userData = $registerManager->selectOneById($userId);
                 $_SESSION['register'] = $userData;
-                header('Location: /userData/profil?id=' . $userId);
+                header('Location: /user/profil?id=' . $userId);
             }
         }
             return $this->twig->render(
@@ -54,7 +54,7 @@ class RegisterController extends AbstractController
             if ($userData) {
                 if (password_verify($user['password'], $userData['password'])) {
                     $_SESSION['register'] = $userData;
-                    header('Location: /activity/showAll');
+                    header('Location: /activite/tout-afficher');
                 } else {
                     $errors['idIncorrect'] = 'Vos identifiants de connexion sont incorrects';
                 }

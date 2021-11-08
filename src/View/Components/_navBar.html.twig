@@ -7,11 +7,11 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activity/showAll' }}"><i class="fab fa-buffer text-white"></i> Activités</a>
-                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activity/addActivity' }}"><i class="far fa-plus-square text-white"></i> Créer une activité</a>
+                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activite/tout-afficher' }}"><i class="fab fa-buffer text-white"></i> Activités</a>
+                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activite/ajout-activite' }}"><i class="far fa-plus-square text-white"></i> Créer une activité</a>
                 {% if session.register is not empty %}
-                <a class="nav-link m-3 text-white fs-5" href="/userData/profil?id={{ session.register.id }}"><li class="fas fa-user text-white"></li> Mon profil</a>
-                <a class="nav-link m-3 text-white fs-5" href="/logout"><i class="fas fa-sign-out-alt text-white"></i> Déconnexion</a>
+                <a class="nav-link m-3 text-white fs-5" href="/user/profil?id={{ session.register.id }}"><li class="fas fa-user text-white"></li> Mon profil</a>
+                <a class="nav-link m-3 text-white fs-5" href="/deconnecter"><i class="fas fa-sign-out-alt text-white"></i> Déconnexion</a>
                 {% endif %}
             </div>
         </div>

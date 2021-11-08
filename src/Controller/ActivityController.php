@@ -28,7 +28,7 @@ class ActivityController extends AbstractController
             if (empty($errors)) {
                 $activityManager = new ActivityManager();
                 $id = $activityManager->insert($activities);
-                header('Location: /activity/addPropose?id=' . $id);
+                header('Location: /activite/ajout-proposition?id=' . $id);
             }
         }
         return $this->twig->render('Activity/addActivity.html.twig', [
