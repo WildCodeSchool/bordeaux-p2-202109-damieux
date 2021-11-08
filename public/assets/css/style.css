@@ -1,6 +1,7 @@
 :root {
     --primary:#ED503A;
     --secondary:#F5F5F7;
+    --third:#15EE52;
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
