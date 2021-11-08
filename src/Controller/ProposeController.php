@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ProposeManager;
+use App\Service\ProposeValidator;
 
 class ProposeController extends AbstractController
 {
@@ -10,18 +11,13 @@ class ProposeController extends AbstractController
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $proposes = array_map('trim', $_POST['propose']);
-            foreach ($proposes as $propose) {
-                if (empty($propose)) {
-                    $errors['empty_propose'] = 'Toutes les proposition(s) doivent être remplies';
-                }
-                if (strlen($propose) < 2) {
-                    $errors['car_propose'] = 'Toutes les proposition(s) doivent faire plus de 2 caractères';
-                }
-            }
+            $formValidator = new ProposeValidator($_POST);
+            $formValidator->cleanProposes();
+            $proposes = $formValidator->getPosts();
+            $errors = $formValidator->getErrors();
             if (empty($errors)) {
                 $proposeManager = new ProposeManager();
-                foreach ($proposes as $content) {
+                foreach ($proposes['propose'] as $content) {
                     $proposeManager->insertPropose($content, $_POST['activityId']);
                 }
                 header('Location: /activity/show?id=' . $_GET['id']);

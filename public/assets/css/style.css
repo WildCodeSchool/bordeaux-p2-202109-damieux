@@ -26,6 +26,9 @@ body {
 #bootstrap-override .text-danger {
     color:var(--primary);
 }
+#bootstrap-override .accordion-button:focus {
+    box-shadow: none;
+}
 
 .slideInUp {
     animation-name: slideInUp;
