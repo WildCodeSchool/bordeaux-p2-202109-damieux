@@ -11,30 +11,20 @@
         </div>
     {% endif %}
 
-    <div class="card-header text-center">
-        <h1>EVENEMENTS</h1>
+    <div class="text-center fs-1 text-white">
+        <h1>Activités</h1>
     </div>
-                {% for activity in activities %}
-
-    <div class="card mb-3 d-inline-flex m-3 " >
-        <div class="row g-0 ">
-            <div class="col-md-4 col-sm-5">
-                <img src="https://picsum.photos/200/300?random={{ loop.index }}" class="img-fluid rounded-start img-thumbnail" alt="...">
-            </div>
-
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="/activite/afficher?id={{ activity.id }}"> {{ activity.title }}</a>
-                    </h5>
-                    <p class="card-text">{{ activity.description }} </p>
-                    <p class="card-text"><small class="text-muted">{{ activity.created_at }}</small></p>
+    <div class="m-auto w-75">
+    {% for activity in activities %}
+        <div class="card bg-white d-inline-flex col-12 col-sm-6 col-md-2 m-2 size">
+            <div class="card-body">
+                <h2 class="card-title text-center">{{ activity.title }}</h2>
+                <p class="card-text text-center">{{ activity.description }}</p>
+                <div class="d-flex justify-content-center">
+                <button type="button" class="rounded-pill border-2 btn btn-outline-danger"><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">Voir plus</a></button>
                 </div>
             </div>
         </div>
+    {% endfor %}
     </div>
-
-
-                {% endfor %}
-
 {% endblock %}

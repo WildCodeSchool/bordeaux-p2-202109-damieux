@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use _PHPStan_76800bfb5\Nette\Utils\DateTime;
 use App\Model\ActivityManager;
 use App\Model\RegisterManager;
 use App\Service\RegisterFormValidator;

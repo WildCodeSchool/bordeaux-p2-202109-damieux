@@ -9,7 +9,7 @@
     <div class="card m-auto w-50 mt-5 bg-opacity-25 bg-light col col-lg-4 col-md-6 col-sm-10" xmlns="http://www.w3.org/1999/html">
         <div class="m-auto card-body">
             <div class="text-center">
-                <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" width="150px" height="150px" alt="profile">
+                <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" class="rounded-pill" width="150px" height="150px" alt="profile">
             </div>
             <ul class="card-text text-center">
                 <li  class="fs-5">Prénom : {{ user_data.lastname }}</li>
@@ -18,22 +18,21 @@
                     <li class="fs-5">Email : {{ user_data.mail }}</li>
                 {% endif %}
                 <li  class="fs-5">GitHub : {{ user_data.github }}</li>
+                <li class="fs-5">Inscrit depuis le : {{ user_data.created_at | date("d/m/Y") }}</li>
             </ul>
         </div>
     </div>
     <div class="accordion m-auto w-50 mt-5" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed bg-warning text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <p class="m-auto fs-4"> Activités proposées </p>
+                <button class="accordion-button collapsed bg-danger text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <p class="m-auto fs-4">Activités proposées</p>
                 </button>
             </h2>
-
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     {% for activity in activities %}
-                        {# TODO : add a link to activity #}
-                    <strong><a href="#">{{ activity.title }} </a>: {{ activity.description }}</strong> <br>
+                        <p><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">{{ activity.title }}</a> : {{ activity.description }}</p>
                     {% endfor %}
                 </div>
             </div>
