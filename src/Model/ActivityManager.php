@@ -17,4 +17,13 @@ class ActivityManager extends AbstractManager
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
+
+    public function getActivitiesFromUserId(int $userId): array
+    {
+        $query = 'SELECT * FROM activity where user_id = :userId';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':userId', $userId);
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ActivityManager;
 use App\Model\RegisterManager;
 use App\Service\RegisterFormValidator;
 
@@ -75,8 +76,11 @@ class RegisterController extends AbstractController
     {
         $registerManager = new RegisterManager();
         $userData = $registerManager->selectOneById($id);
+        $activityManager = new ActivityManager();
+        $activities = $activityManager->getActivitiesFromUserId($userData['id']);
         return $this->twig->render('userData/profil.html.twig', [
-            'user_data' => $userData
+            'user_data' => $userData,
+            'activities' => $activities,
         ]);
     }
 }
