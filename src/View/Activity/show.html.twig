@@ -33,4 +33,11 @@
             </div>
         </div>
     </div>
+    <div class="chartjs-container">
+        <canvas id="myChart" width="200" height="200" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+<script src="/assets/js/chart-bar.js"></script>
 {% endblock %}

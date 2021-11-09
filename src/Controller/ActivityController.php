@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ActivityManager;
+use App\Model\ChoiceManager;
 use App\Model\ProposeManager;
 use App\Model\RegisterManager;
 use App\Service\FormValidator;
@@ -45,13 +46,21 @@ class ActivityController extends AbstractController
         $creatorIid = $activity['user_id'];
         $proposes = $proposeManager->selectProposesByActivityId($activityId);
         $userData = $registerManager->selectOneById($creatorIid);
+        $choiceManager = new ChoiceManager();
+        $chartProposes = [];
+        $voteCountByAnswer = [];
+        foreach ($proposes as $propose) {
+            $chartProposes[] = $propose['content'];
+            $voteCountByAnswer[] = $choiceManager->countVoteByProposition($propose['id'])['count'];
+        }
 
-        return $this->twig->render(
-            'Activity/show.html.twig',
-            ['activity' => $activity,
+        return $this->twig->render('Activity/show.html.twig', [
+                'activity' => $activity,
                 'proposes' => $proposes,
-                'user_data' => $userData]
-        );
+                'user_data' => $userData,
+                'chart_proposes' => $chartProposes,
+                'vote_count_by_answer' => $voteCountByAnswer,
+            ]);
     }
 
     // AFFICHAGE DE TOUTES LES ACTIVITES (TITRE + DESCRIPTION)
