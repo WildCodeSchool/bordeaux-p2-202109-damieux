@@ -12,7 +12,8 @@ li, ul {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--secondary);
+    background-image: url("/assets/images/background.jpg");
+    background-size: cover;
 }
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
@@ -24,6 +25,9 @@ body {
 }
 #bootstrap-override .text-danger {
     color:var(--primary);
+}
+#bootstrap-override .accordion-button:focus {
+    box-shadow: none;
 }
 
 .slideInUp {
@@ -40,6 +44,10 @@ body {
     animation-name: fadeInLeftBig;
     animation-duration: 1s;
     animation-fill-mode: both;
+}
+
+.chartjs-container {
+    width: 60vw;
 }
 @keyframes slideInUp {
     0% {
@@ -71,7 +79,6 @@ body {
         transform: none;
     }
 }
-
 
 
 
