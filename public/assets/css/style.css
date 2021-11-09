@@ -6,13 +6,17 @@
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
 }
-
+.size {
+    height: 40vh;
+    width: 45vh
+}
 li, ul {
     list-style: none;
 }
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url("/assets/images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
 }
 #bootstrap-override .form-control:focus {
@@ -28,6 +32,9 @@ body {
 }
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
+}
+#bootstrap-override .accordion-item {
+    border: none;
 }
 
 .slideInUp {
@@ -45,11 +52,11 @@ body {
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-
+.chartjs-container {
+    width: 10vw;
 canvas{
     margin: 0 auto;
 }
-
 @keyframes slideInUp {
     0% {
         transform: translateY(100%);
