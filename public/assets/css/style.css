@@ -46,9 +46,10 @@ body {
     animation-fill-mode: both;
 }
 
-.chartjs-container {
-    width: 60vw;
+canvas{
+    margin: 0 auto;
 }
+
 @keyframes slideInUp {
     0% {
         transform: translateY(100%);
