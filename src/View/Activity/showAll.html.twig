@@ -19,12 +19,14 @@
     <div class="card mb-3 d-inline-flex m-3 " >
         <div class="row g-0 ">
             <div class="col-md-4 col-sm-5">
-                <img src="https://picsum.photos/200/300" class="img-fluid rounded-start img-thumbnail" alt="...">
+                <img src="https://picsum.photos/200/300?random={{ loop.index }}" class="img-fluid rounded-start img-thumbnail" alt="...">
             </div>
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ activity.title }}</h5>
+                    <h5 class="card-title">
+                        <a href="/activite/afficher?id={{ activity.id }}"> {{ activity.title }}</a>
+                    </h5>
                     <p class="card-text">{{ activity.description }} </p>
                     <p class="card-text"><small class="text-muted">{{ activity.created_at }}</small></p>
                 </div>
