@@ -7,8 +7,8 @@ h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
 }
 .size {
-    height: 40vh;
-    width: 45vh
+    width: 25rem;
+    height: 18rem;
 }
 li, ul {
     list-style: none;
@@ -52,8 +52,6 @@ body {
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-.chartjs-container {
-    width: 10vw;
 canvas{
     margin: 0 auto;
 }
