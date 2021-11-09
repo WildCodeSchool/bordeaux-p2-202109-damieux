@@ -10,21 +10,21 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-
     <div class="text-center fs-1 text-white">
         <h1>Activités</h1>
     </div>
-    <div class="m-auto w-75">
+    <div class="container mt-4 d-flex flex-wrap">
     {% for activity in activities %}
-        <div class="card bg-white d-inline-flex col-12 col-sm-6 col-md-2 m-2 size">
+        <div class="card bg-white bg-opacity-75 col-12 col-sm-6 col-md-2 m-2 mx-3 size" >
             <div class="card-body">
-                <h2 class="card-title text-center">{{ activity.title }}</h2>
+                <h2 class=" text-center">{{ activity.title }}</h2>
                 <p class="card-text text-center">{{ activity.description }}</p>
                 <div class="d-flex justify-content-center">
-                <button type="button" class="rounded-pill border-2 btn btn-outline-danger"><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">Voir plus</a></button>
+                <button type="button" class="rounded-pill border-2 btn btn-outline-danger btn-sm p-2 "><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">Voir plus</a></button>
                 </div>
             </div>
+            <p class="text-center">Créer le {{ activity.created_at | date("d/m/Y")}}</p>
         </div>
     {% endfor %}
-    </div>
+        </div>
 {% endblock %}
