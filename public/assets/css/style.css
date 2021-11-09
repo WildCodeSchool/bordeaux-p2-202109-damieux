@@ -10,7 +10,6 @@ h1, h2, h3 {
     height: 40vh;
     width: 45vh
 }
-
 li, ul {
     list-style: none;
 }
@@ -53,9 +52,10 @@ body {
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-
 .chartjs-container {
     width: 10vw;
+canvas{
+    margin: 0 auto;
 }
 @keyframes slideInUp {
     0% {
