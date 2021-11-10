@@ -40,15 +40,11 @@ class ActivityController extends AbstractController
     public function show(int $activityId): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $proposeId = [];
-            foreach ($_POST as $key => $input) {
-                if ($input === 'on') {
-                    $proposeId['proposition_id'] = $key;
-                }
+            foreach ($_POST['answers'] as $answer) {
+                $userId = $_SESSION['register']['id'];
+                $choiceManager = new ChoiceManager();
+                $choiceManager->insertChoice($answer, $userId);
             }
-            $proposeId['user_id'] = $_SESSION['register']['id'];
-            $choiceManager = new ChoiceManager();
-            $choiceManager->insertChoice($proposeId);
         }
         $activityManager = new ActivityManager();
         $proposeManager = new ProposeManager();
