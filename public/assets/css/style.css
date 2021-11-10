@@ -27,6 +27,7 @@ body {
     border-color:var(--secondary);
     box-shadow: none;
 }
+
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
     border-color: var(--primary);
