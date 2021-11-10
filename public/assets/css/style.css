@@ -30,7 +30,8 @@ body {
 
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
-    border-color: var(--primary);
+    color:var(--secondary);
+    border-color:var(--primary);
 }
 
 #bootstrap-override .btn-outline-danger{
