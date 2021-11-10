@@ -32,6 +32,10 @@ body {
     border-color: var(--primary);
 }
 
+#bootstrap-override .btn-outline-danger{
+    border-color: var(--primary);
+}
+
 #bootstrap-override .color-text-danger {
     color: var(--primary);  
 }
@@ -58,17 +62,18 @@ body {
     background-color: var(--primary);
 }
 
-
 .slideInUp {
     animation-name: slideInUp;
     animation-duration: 2s;
     animation-fill-mode: both;
 }
+
 .fadeInRightBig {
     animation-name: fadeInRightBig;
     animation-duration: 1s;
     animation-fill-mode: both;
 }
+
 .fadeInLeftBig {
     animation-name: fadeInLeftBig;
     animation-duration: 1s;
