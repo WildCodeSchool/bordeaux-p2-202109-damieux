@@ -1,7 +1,6 @@
 :root {
     --primary:#ED503A;
     --secondary:#F5F5F7;
-    --third:#15EE52;
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
@@ -19,30 +18,46 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.border-text-danger {
+    border-color:var(--primary);
+}
+
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
     box-shadow: none;
 }
-
-.size {
-    height: 50vh;
-    width: 50vh;
-
-}
-
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
     border-color: var(--primary);
 }
-#bootstrap-override .text-danger {
-    color:var(--primary);
+
+#bootstrap-override .color-text-danger {
+    color: var(--primary);  
 }
+
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
 }
+
+#bootstrap-override .accordion-button::after {
+    flex-shrink: 0;
+    margin-left: 0;
+    box-shadow: none;
+}
+
 #bootstrap-override .accordion-item {
     border: none;
 }
+
+#text-decoration-none {
+    color:var(--primary);
+}
+
+#bootstrap-override .color-button-bloc {
+    background-color: var(--primary);
+}
+
 
 .slideInUp {
     animation-name: slideInUp;
@@ -65,9 +80,8 @@ canvas{
 
 .clicked {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-
+    background-color:var(--primary);
+    border-color:var(--primary);
 }
 @keyframes slideInUp {
     0% {
