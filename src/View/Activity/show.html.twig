@@ -25,8 +25,8 @@
             <div class="d-flex justify-content-center">
                 <form actione="" method="post" class="m-1">
                     {% for propose in proposes %}
-                        <label for="propose">{{ propose.content }}</label>
-                        <input id="propose" type="checkbox" name={{ propose.id }}>
+                        <label class="btn btn-outline-danger rounded pill vote" for={{propose.id}}>{{ propose.content }}</label>
+                        <input id={{propose.id}} class='d-none' type="checkbox" name={{ propose.id }}>
                     {% endfor %}
                     <button type="submit" class="btn btn-outline-danger rounded-pill">Validé</button>
                 </form>
@@ -44,4 +44,6 @@
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="/assets/js/chart-bar.js"></script>
+<script src="/assets/js/button.js"></script>
+
 {% endblock %}

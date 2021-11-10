@@ -55,6 +55,13 @@ body {
 canvas{
     margin: 0 auto;
 }
+
+.clicked {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+
+}
 @keyframes slideInUp {
     0% {
         transform: translateY(100%);
