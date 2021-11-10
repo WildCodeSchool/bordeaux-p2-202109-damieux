@@ -11,30 +11,35 @@
         </div>
     {% endif %}
 
-    <div class="card-header text-center">
+    <div class="card-header text-center ">
         <h1>EVENEMENTS</h1>
     </div>
+    <div class="container mt-4 d-flex flex-wrap">
                 {% for activity in activities %}
 
-    <div class="card mb-3 d-inline-flex m-3 " >
+    <div class="card mb-3 col-12 col-sm-6 col-md-2 m-1 opacity-75 size ">
         <div class="row g-0 ">
-            <div class="col-md-4 col-sm-5">
-                <img src="https://picsum.photos/200/300?random={{ loop.index }}" class="img-fluid rounded-start img-thumbnail" alt="...">
+            <div class=" card-img-top">
+                <img src="https://picsum.photos/350/130?random={{ loop.index }}" class="img-fluid rounded-start img-thumbnail" alt="...">
             </div>
-
-            <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-title ">
                         <a href="/activite/afficher?id={{ activity.id }}"> {{ activity.title }}</a>
                     </h5>
-                    <p class="card-text">{{ activity.description }} </p>
+                    <p class="card-text">{{ activity.description|striptags|length > 80 ? activity.description|striptags|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '  [...]' : activity.description|striptags  }}  </p>
                     <p class="card-text"><small class="text-muted">{{ activity.created_at }}</small></p>
+                    <div class="d-flex justify-content-center ">
+                        <button type="button" class="rounded-pill border-2 btn btn-outline-danger mt-auto "><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">+</a></button>
+                    </div>
                 </div>
-            </div>
+
+
         </div>
     </div>
 
 
+
                 {% endfor %}
+    </div>
 
 {% endblock %}

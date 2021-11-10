@@ -21,7 +21,7 @@ class ActivityController extends AbstractController
                 'description' => 'La description'
             ];
             $formValidator->checkEmptyInputs($toCheckInputs);
-            $formValidator->checkLength($_POST['title'], 'Le titre', 2, 255);
+            $formValidator->checkLength($_POST['title'], 'Le titre', 2, 50);
             $formValidator->checkLength($_POST['description'], 'La description', 2, 2500);
             $errors = $formValidator->getErrors();
             $activities = $formValidator->getPosts();
