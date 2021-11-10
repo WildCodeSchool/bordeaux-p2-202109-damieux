@@ -23,13 +23,10 @@
             </div>
             <div class="d-flex justify-content-center">
                 {% for propose in proposes %}
-                    <form method="post" class="m-1">
-                        <div>
-                            <label for="id-1"></label>
-                            <input type="checkbox" id="id-1">
-                            <button type="button" class="btn btn-outline-danger rounded-pill">{{ propose.content }}</button>
+                        <div class="active">
+                            <label class="btn btn-outline-danger rounded pill vote" type="submit" for={{propose.id}}>{{ propose.content }}</label>
+                            <input class="d-none" type="checkbox" name="proposition_id[]" id={{propose.id}}>
                         </div>
-                    </form>
                 {% endfor %}
             </div>
             <div class="d-flex justify-content-start mt-3">
@@ -44,4 +41,6 @@
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="/assets/js/chart-bar.js"></script>
+<script src="/assets/js/button.js"></script>
+
 {% endblock %}
