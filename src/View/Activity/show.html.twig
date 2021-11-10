@@ -26,9 +26,11 @@
                 <form actione="" method="post" class="m-1">
                     {% for propose in proposes %}
                         <label class="btn btn-outline-danger rounded pill vote" for={{propose.id}}>{{ propose.content }}</label>
-                        <input id={{propose.id}} class='d-none' type="checkbox" name={{ propose.id }}>
+                        <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
                     {% endfor %}
-                    <button type="submit" class="btn btn-outline-danger rounded-pill">Validé</button>
+                    <div class="d-flex justify-content-center mt-4">
+                        <button type="submit" class="btn btn-outline-danger rounded-pill">Validé</button>
+                    </div>
                 </form>
             </div>
 
