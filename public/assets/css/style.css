@@ -6,13 +6,17 @@
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
 }
-
+.size {
+    width: 25rem;
+    height: 18rem;
+}
 li, ul {
     list-style: none;
 }
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url("/assets/images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
 }
 #bootstrap-override .form-control:focus {
@@ -36,6 +40,9 @@ body {
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
 }
+#bootstrap-override .accordion-item {
+    border: none;
+}
 
 .slideInUp {
     animation-name: slideInUp;
@@ -52,11 +59,16 @@ body {
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-
 canvas{
     margin: 0 auto;
 }
 
+.clicked {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+
+}
 @keyframes slideInUp {
     0% {
         transform: translateY(100%);

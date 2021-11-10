@@ -10,7 +10,7 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="card mt-3 col col-lg-4 col-md-6 col-sm-10 m-auto w-75 bg-light bg-opacity-25">
+    <div class="card mt-3 col col-lg-4 col-md-6 col-sm-10 m-auto w-75 bg-light bg-opacity-75">
         <div class="card-header text-center">
             <h1>{{ activity.title }}</h1>
         </div>
@@ -21,23 +21,29 @@
             <div class="text-center p-2 fs-4">
                 <p>Voici les propositions pour cette activité :</p>
             </div>
+
             <div class="d-flex justify-content-center">
-                {% for propose in proposes %}
-                    <form method="post" class="m-1">
-                        <button type="submit" class="btn btn-outline-danger rounded-pill">{{ propose.content }}</button>
-                    </form>
-                {% endfor %}
+                <form actione="" method="post" class="m-1">
+                    {% for propose in proposes %}
+                        <label class="btn btn-outline-danger rounded pill vote" for={{propose.id}}>{{ propose.content }}</label>
+                        <input id={{propose.id}} class='d-none' type="checkbox" name={{ propose.id }}>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-outline-danger rounded-pill">Validé</button>
+                </form>
             </div>
+
             <div class="d-flex justify-content-start mt-3">
                 <p>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</p>
             </div>
         </div>
-    </div>
-    <div class="chartjs-container">
-        <canvas id="myChart" width="200" height="200" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+        <div>
+            <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+        </div>
     </div>
 {% endblock %}
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="/assets/js/chart-bar.js"></script>
+<script src="/assets/js/button.js"></script>
+
 {% endblock %}
