@@ -32,7 +32,7 @@
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     {% for activity in activities %}
-                        <p><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none text-danger">{{ activity.title }}</a> : {{ activity.description }}</p>
+                        <p><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none color-text-danger">{{ activity.title }}</a> : {{ activity.description }}</p>
                     {% endfor %}
                 </div>
             </div>
