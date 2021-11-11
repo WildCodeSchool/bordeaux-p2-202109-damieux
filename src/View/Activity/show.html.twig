@@ -15,31 +15,38 @@
             <h1>{{ activity.title }}</h1>
         </div>
         <div class="card-body text-dark ">
-            <div class="fs-6 text-center border rounded-3 p-3 mb-2 bg-light bg-success p-2 text-dark bg-opacity-50">
+            <div class="fs-6 text-center border rounded-3 mb-2 bg-light p-2 text-dark bg-opacity-25">
                 <p>{{ activity.description }}</p>
             </div>
-            <div class="text-center p-2 fs-4">
+            <div class="text-center fs-4">
                 <p>Voici les propositions pour cette activité :</p>
             </div>
-
+            {% for error in errors %}
+                <div class="m-auto text-center">
+                    <p class="text-danger">{{ error }}</p>
+                </div>
+            {% endfor %}
             <div class="d-flex justify-content-center">
-                <form actione="" method="post" class="m-1">
+                <form action="" method="post" class="m-1">
                     {% for propose in proposes %}
-                        <label class="btn btn-outline-danger rounded pill vote mx-3" for={{propose.id}}>{{ propose.content }}</label>
+                        <label class="btn btn-outline-danger rounded pill vote mx-3 mt-3" for={{propose.id}}>{{ propose.content }}</label>
                         <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
                     {% endfor %}
-                    <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex justify-content-center mt-5">
+                        {% if ableToVote %}
                         <button type="submit" class="btn btn-outline-danger rounded-pill">Valider</button>
+                        {% else %}
+                        <span>Vous avez déja voté pour {{ proposeVoting.content }}</span>
+                        {% endif %}
                     </div>
                 </form>
-            </div>
-
-            <div class="d-flex justify-content-start mt-3">
-                <p>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</p>
             </div>
         </div>
         <div>
             <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+        </div>
+        <div class="d-flex justify-content-start mx-3">
+            <p><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></p>
         </div>
     </div>
 {% endblock %}
