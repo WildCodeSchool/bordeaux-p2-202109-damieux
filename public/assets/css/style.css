@@ -26,9 +26,22 @@ body {
     border-color:var(--primary);
 }
 
+
+#bootstrap-override .override-red-over:hover {
+    color:var(--primary);
+    border-bottom: solid 5px var(--primary);
+    transition: 0.2s ease;
+}
+
+
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
     box-shadow: none;
+}
+
+#bootstrap-override .form-control:active {
+    border-color:var(--secondary);
+    text-decoration: underline;
 }
 
 #bootstrap-override .btn-outline-danger:hover{

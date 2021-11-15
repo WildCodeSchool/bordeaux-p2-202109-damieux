@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <img src="/assets/images/logo.png" width="80px" height="80px" alt="logo" >
-        <h1 class="navbar-brand m-1 text-white fs-2">WilderEvent</h1>
-        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <h1 class="navbar-brand m-1 fs-2">WilderEvent</h1>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activite/tout-afficher' }}"><i class="fab fa-buffer text-white"></i> Activités</a>
-                <a class="nav-link m-3 text-white fs-5" href="{{session.register is empty ? '/' : '/activite/ajout-activite' }}"><i class="far fa-plus-square text-white"></i> Créer une activité</a>
+                <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/activite/tout-afficher' }}"><i class="fab fa-buffer override-red"></i> Activités</a>
+                <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/activite/ajout-activite' }}"><i class="far fa-plus-square override-red"></i> Créer une activité</a>
                 {% if session.register is not empty %}
-                <a class="nav-link m-3 text-white fs-5" href="/user/profil?id={{ session.register.id }}"><li class="fas fa-user text-white"></li> Mon profil</a>
-                <a class="nav-link m-3 text-white fs-5" href="/deconnecter"><i class="fas fa-sign-out-alt text-white"></i> Déconnexion</a>
+                <a class="nav-link m-3 fs-5 override-red-over active" href="/user/profil?id={{ session.register.id }}"><li class="fas fa-user override-red"></li> Mon profil</a>
+                <a class="nav-link m-3 fs-5 override-red-over active" href="/deconnecter"><i class="fas fa-sign-out-alt override-red"></i> Déconnexion</a>
                 {% endif %}
             </div>
         </div>
