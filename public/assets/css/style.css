@@ -19,17 +19,15 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
 }
 
-#bootstrap-override .card:hover{
-    cursor: pointer;
+.cards:hover{
     transform:scale(1.08);
 }
 
-.card{
+.cards{
     transition: transform .4s;
-}
+}x
 
 .border-text-danger {
     border-color:var(--primary);
