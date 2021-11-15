@@ -22,10 +22,18 @@ body {
 
 }
 
+#bootstrap-override .card:hover{
+    cursor: pointer;
+    transform:scale(1.08);
+}
+
+.card{
+    transition: transform .4s;
+}
+
 .border-text-danger {
     border-color:var(--primary);
 }
-
 
 #bootstrap-override .override-red-over:hover {
     color:var(--primary);
