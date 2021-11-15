@@ -6,15 +6,36 @@
 
 
 {% block content %}
-    <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" height="150px" width="150px" class="rounded-pill">
-
-User : {{ user_data.firstname }} {{ user_data.lastname }}
-    <br>
-    {% if session.register.id == user_data.id %}
-    
-Email : {{ user_data.mail }}
-    <br>
-    {% endif %}
-Github : {{ user_data.github }}
-
+    <div class="card m-auto w-50 mt-5 bg-opacity-75 bg-light col col-lg-4 col-md-6 col-sm-10" xmlns="http://www.w3.org/1999/html">
+        <div class="m-auto card-body">
+            <div class="text-center">
+                <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" class="rounded-pill" width="150px" height="150px" alt="profile">
+            </div>
+            <ul class="card-text text-justify mt-3">
+                <li  class="fs-5 lh-lg">Prénom : <small>{{ user_data.firstname }}</small></li>
+                <li  class="fs-5 lh-lg">Nom : <small>{{ user_data.lastname }}</small></li>
+                {% if session.register.id == user_data.id %}
+                    <li class="fs-5 lh-lg">Email : <small>{{ user_data.mail }}</small></li>
+                {% endif %}
+                <li  class="fs-5 lh-lg">GitHub : <small>{{ user_data.github }}</small></li>
+                <li class="fs-5 lh-lg">Inscrit depuis le : <small>{{ user_data.created_at | date("d/m/Y") }}</small></li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion m-auto w-50 mt-5" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed color-button-bloc text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <p class="m-auto fs-4">Activités proposées</p>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for activity in activities %}
+                        <p><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none color-text-danger">{{ activity.title }}</a> : {{ activity.description }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
