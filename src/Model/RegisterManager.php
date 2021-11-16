@@ -9,8 +9,8 @@ class RegisterManager extends AbstractManager
     public function create(array $userData): int
     {
         $statement = $this->pdo->prepare('
-        INSERT INTO user (firstname, lastname, mail, github, password, created_at) 
-        VALUES (:firstname, :lastname, :mail, :github, :password, NOW())');
+        INSERT INTO user (firstname, lastname, mail, github, password, created_at, is_admin) 
+        VALUES (:firstname, :lastname, :mail, :github, :password, NOW(), FALSE)');
         $statement->bindValue(':firstname', $userData['firstname'], \PDO::PARAM_STR);
         $statement->bindValue('lastname', $userData['lastname'], \PDO::PARAM_STR);
         $statement->bindValue('mail', $userData['mail'], \PDO::PARAM_STR);

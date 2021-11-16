@@ -42,11 +42,26 @@
                 </form>
             </div>
         </div>
+        <div class="d-flex m-4">
+            <form method="post" action="/activite/ajout-comment?id={{ activity.id }}">
+                <textarea name="content" placeholder="Ecris un commentaire"></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+        <div>
+            {% for comment in comments %}
+                <p>Poster par {{ comment.firstname }} <img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment"></p>
+                <p>{{ comment.content }}</p>
+            {% else %}
+                <p>Aucun commentaires</p>
+            {% endfor %}
+        </div>
+
         <div>
             <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
         </div>
         <div class="d-flex justify-content-start mx-3 ">
-            <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
+            <a class="text-muted" href="/user/profil?id={{ user_data.id }}"><small>Créer par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
         </div>
     </div>
 {% endblock %}
