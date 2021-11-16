@@ -45,16 +45,13 @@
         <div>
             <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
         </div>
-        
-        <form action="/activite/suprrimer" method="POST">
+        <form class="d-flex justify-content-center mt-5" action="/activite/supprimer" method="POST">
             <input type="hidden" name="id" value="{{ activity.id }}">
-            <button>Delete</button>
+            <button class="btn btn-danger">Supprimer activité</button>
         </form>
-
-        <div class="d-flex justify-content-start mx-3 ">
-            <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
+        <div class="d-flex justify-content-center mt-2">
+            <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><br/><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
         </div>
-
     </div>
 {% endblock %}
 {% block javascript %}

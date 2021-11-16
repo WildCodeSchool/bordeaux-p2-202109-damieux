@@ -108,4 +108,5 @@ class ActivityController extends AbstractController
             header('Location:/activite/tout-afficher');
         }
     }
-}
+
+
