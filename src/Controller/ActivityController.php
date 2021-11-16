@@ -111,15 +111,6 @@ class ActivityController extends AbstractController
             $commentManager = new CommentManager();
             $commentManager->insertCommentByActivityIdAndUserId($content, $activityId, $userId);
             header('Location: /activite/afficher?id=' . $id);
-
-          
-    public function deleteActivity()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id'];
-            $activityManager = new ActivityManager();
-            $activityManager->delete($id);
-            header('Location:/activite/tout-afficher');
         }
     }
 }
