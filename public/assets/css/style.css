@@ -1,7 +1,6 @@
 :root {
     --primary:#ED503A;
     --secondary:#F5F5F7;
-    --third:#15EE52;
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
@@ -16,32 +15,75 @@ li, ul {
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url("/assets/images/background.jpg");
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
+
+.cards:hover{
+    transform:scale(1.08);
+}
+
+.cards{
+    transition: transform .4s;
+}x
+
+.border-text-danger {
+    border-color:var(--primary);
+}
+
+#bootstrap-override .override-red-over:hover {
+    color:var(--primary);
+    border-bottom: solid 5px var(--primary);
+    transition: 0.2s ease;
+}
+
+
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
     box-shadow: none;
 }
 
-.size {
-    height: 50vh;
-    width: 50vh;
-
+#bootstrap-override .form-control:active {
+    border-color:var(--secondary);
+    text-decoration: underline;
 }
 
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
+    color:var(--secondary);
+    border-color:var(--primary);
+}
+
+#bootstrap-override .btn-outline-danger{
     border-color: var(--primary);
 }
-#bootstrap-override .text-danger {
-    color:var(--primary);
+
+#bootstrap-override .color-text-danger {
+    color: var(--primary);  
 }
+
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
 }
+
+#bootstrap-override .accordion-button::after {
+    flex-shrink: 0;
+    margin-left: 0;
+    box-shadow: none;
+}
+
 #bootstrap-override .accordion-item {
     border: none;
+}
+
+#text-decoration-none {
+    color:var(--primary);
+}
+
+#bootstrap-override .color-button-bloc {
+    background-color: var(--primary);
 }
 
 .slideInUp {
@@ -49,11 +91,13 @@ body {
     animation-duration: 2s;
     animation-fill-mode: both;
 }
+
 .fadeInRightBig {
     animation-name: fadeInRightBig;
     animation-duration: 1s;
     animation-fill-mode: both;
 }
+
 .fadeInLeftBig {
     animation-name: fadeInLeftBig;
     animation-duration: 1s;
@@ -65,9 +109,8 @@ canvas{
 
 .clicked {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-
+    background-color:var(--primary);
+    border-color:var(--primary);
 }
 @keyframes slideInUp {
     0% {

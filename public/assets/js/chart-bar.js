@@ -8,7 +8,8 @@ const myChart = new Chart(ctx, {
     data: {
         labels: answers,
         datasets: [{
-            label: '# of Votes',
+            label: 'Nombre de Votes',
+            borderRadius: 5,
             data: countChoices,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -32,8 +33,20 @@ const myChart = new Chart(ctx, {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                display: true,
+                grid : {
+                    display: false
+                },
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            },
+            x: {
+                grid : {
+                    display: false
+                }
             }
-        }
+        },
     }
 });

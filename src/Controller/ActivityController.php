@@ -40,11 +40,17 @@ class ActivityController extends AbstractController
 
     public function show(int $activityId): string
     {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            foreach ($_POST['answers'] as $answer) {
-                $userId = $_SESSION['register']['id'];
-                $choiceManager = new ChoiceManager();
-                $choiceManager->insertChoice($answer, $userId);
+            if (empty($_POST['answers'])) {
+                $errors[] = 'La sélection ne peut être vide';
+            }
+            if (empty($errors)) {
+                foreach ($_POST['answers'] as $answer) {
+                    $userId = $_SESSION['register']['id'];
+                    $choiceManager = new ChoiceManager();
+                    $choiceManager->insertChoice($answer, $userId);
+                }
             }
         }
         $activityManager = new ActivityManager();
@@ -61,13 +67,25 @@ class ActivityController extends AbstractController
             $chartProposes[] = $propose['content'];
             $voteCountByAnswer[] = $choiceManager->countVoteByProposition($propose['id'])['count'];
         }
+        $votingUsersId = $choiceManager->selectVotingUsersIdsByActivityId($activityId);
+        $ableToVote = !(in_array($_SESSION['register']['id'], $votingUsersId));
+        $proposeVoting = null;
+        if (!$ableToVote) {
+            $proposeVoting = $choiceManager->showProposeVotingByUserId(
+                $activityId,
+                $_SESSION['register']['id']
+            );
+        }
         return $this->twig->render('Activity/show.html.twig', [
-            'activity' => $activity,
-            'proposes' => $proposes,
-            'user_data' => $userData,
-            'chart_proposes' => $chartProposes,
-            'vote_count_by_answer' => $voteCountByAnswer,
-        ]);
+                'activity' => $activity,
+                'proposes' => $proposes,
+                'user_data' => $userData,
+                'chart_proposes' => $chartProposes,
+                'vote_count_by_answer' => $voteCountByAnswer,
+                'errors' => $errors,
+                'ableToVote' => $ableToVote,
+                'proposeVoting' => $proposeVoting
+            ]);
     }
 
     public function showAll(): string
