@@ -113,4 +113,5 @@ class ActivityController extends AbstractController
             header('Location: /activite/afficher?id=' . $id);
         }
     }
-}
+
+
