@@ -9,6 +9,9 @@ h1, h2, h3 {
     width: 25rem;
     height: 18rem;
 }
+a {
+    text-decoration: none;
+}
 li, ul {
     list-style: none;
 }
@@ -19,87 +22,68 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
 }
-
 #bootstrap-override .card:hover{
     cursor: pointer;
     transform:scale(1.08);
 }
-
 .card{
     transition: transform .4s;
 }
-
 .border-text-danger {
     border-color:var(--primary);
 }
-
 #bootstrap-override .override-red-over:hover {
     color:var(--primary);
     border-bottom: solid 5px var(--primary);
     transition: 0.2s ease;
 }
-
-
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);
     box-shadow: none;
 }
-
 #bootstrap-override .form-control:active {
     border-color:var(--secondary);
     text-decoration: underline;
 }
-
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
     color:var(--secondary);
     border-color:var(--primary);
 }
-
 #bootstrap-override .btn-outline-danger{
     border-color: var(--primary);
 }
-
 #bootstrap-override .color-text-danger {
-    color: var(--primary);  
+    color: var(--primary);
 }
-
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
 }
-
 #bootstrap-override .accordion-button::after {
     flex-shrink: 0;
     margin-left: 0;
     box-shadow: none;
 }
-
 #bootstrap-override .accordion-item {
     border: none;
 }
-
 #text-decoration-none {
     color:var(--primary);
 }
-
 #bootstrap-override .color-button-bloc {
     background-color: var(--primary);
 }
-
 .slideInUp {
     animation-name: slideInUp;
     animation-duration: 2s;
     animation-fill-mode: both;
 }
-
 .fadeInRightBig {
     animation-name: fadeInRightBig;
     animation-duration: 1s;
     animation-fill-mode: both;
 }
-
 .fadeInLeftBig {
     animation-name: fadeInLeftBig;
     animation-duration: 1s;
@@ -108,7 +92,6 @@ body {
 canvas{
     margin: 0 auto;
 }
-
 .clicked {
     color: #fff;
     background-color:var(--primary);
