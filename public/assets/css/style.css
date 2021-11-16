@@ -23,6 +23,8 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+
 .cards:hover{
     transform:scale(1.08);
 }
