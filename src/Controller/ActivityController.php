@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\ActivityManager;
 use App\Model\ChoiceManager;
+use App\Model\ItemManager;
 use App\Model\ProposeManager;
 use App\Model\RegisterManager;
 use App\Service\FormValidator;
@@ -17,7 +18,7 @@ class ActivityController extends AbstractController
             $formValidator = new FormValidator($_POST);
             $formValidator->trimAll();
             $toCheckInputs = [
-                'title'       => 'Le titre',
+                'title' => 'Le titre',
                 'description' => 'La description'
             ];
             $formValidator->checkEmptyInputs($toCheckInputs);
@@ -96,5 +97,15 @@ class ActivityController extends AbstractController
             'Activity/showAll.html.twig',
             ['activities' => $activities]
         );
+    }
+
+    public function deleteActivity()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $activityManager = new ActivityManager();
+            $activityManager->delete($id);
+            header('Location:/activite/tout-afficher');
+        }
     }
 }

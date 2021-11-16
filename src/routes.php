@@ -11,6 +11,7 @@ return [
     'activite/ajout-activite'    => ['ActivityController', 'add',],
     'activite/ajout-proposition' => ['ProposeController', 'addPropose',],
     'activite/afficher'          => ['ActivityController', 'show', ['id'],],
+    'activite/suprrimer'         => ['ActivityController', 'deleteActivity', ['id'],],
     'activite/tout-afficher'     => ['ActivityController', 'showAll', ['id'],],
     'user/inscription'           => ['RegisterController', 'add',],
     'deconnecter'                => ['RegisterController', 'logout'],
