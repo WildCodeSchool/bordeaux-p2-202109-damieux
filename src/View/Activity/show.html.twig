@@ -41,6 +41,10 @@
         <div>
             <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
         </div>
+        <form action="/activite/suprrimer" method="POST">
+            <input type="hidden" name="id" value="{{ activity.id}}">
+            <button>Delete</button>
+        </form>
     </div>
 {% endblock %}
 {% block javascript %}

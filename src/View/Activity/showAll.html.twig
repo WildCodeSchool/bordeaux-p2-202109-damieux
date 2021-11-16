@@ -15,13 +15,11 @@
     <div class="text-center text-white fs-1 mb-5">
         <h1>Activités</h1>
     </div>
-    <div class="container mt-4 d-flex flex-wrap px-5">
+    <div class="container mt-5 d-flex flex-wrap justify-content-center px-5">
         {% for activity in activities %}
-            <div class="card mb-5 col-12 col-sm-6 col-md-2 m-1 opacity-75 mx-3 size">
+            <div class="card mb-5 col-12 col-sm-6 col-md-3 m-1 opacity-75 mx-3">
                 <div class="row g-0 ">
-                    <div class="card-img-top">
                         <img src="https://picsum.photos/350/130?random={{ loop.index }}" class="img-fluid rounded-top">
-                    </div>
                     <div class="card-body">
                         <h5 class="card-title text-center fs-3">{{ activity.title }}</h5>
                         <p class="card-text text-center">{{ activity.description|striptags|length > 80 ? activity.description|striptags|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '  [...]' : activity.description|striptags  }}</p>
