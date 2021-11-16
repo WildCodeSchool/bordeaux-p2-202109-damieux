@@ -18,7 +18,7 @@ class ActivityController extends AbstractController
             $formValidator = new FormValidator($_POST);
             $formValidator->trimAll();
             $toCheckInputs = [
-                'title'       => 'Le titre',
+                'title' => 'Le titre',
                 'description' => 'La description'
             ];
             $formValidator->checkEmptyInputs($toCheckInputs);
@@ -111,6 +111,15 @@ class ActivityController extends AbstractController
             $commentManager = new CommentManager();
             $commentManager->insertCommentByActivityIdAndUserId($content, $activityId, $userId);
             header('Location: /activite/afficher?id=' . $id);
+
+          
+    public function deleteActivity()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $activityManager = new ActivityManager();
+            $activityManager->delete($id);
+            header('Location:/activite/tout-afficher');
         }
     }
 }
