@@ -9,6 +9,7 @@ return [
     //'items/delete'            => ['ItemController', 'delete',],
     ''                          => ['RegisterController', 'connect'],
     'activite/ajout-activite'    => ['ActivityController', 'add',],
+    'activite/ajout-comment'    => ['ActivityController', 'addCommentByActivity', ['id']],
     'activite/ajout-proposition' => ['ProposeController', 'addPropose',],
     'activite/afficher'          => ['ActivityController', 'show', ['id'],],
     'activite/supprimer'         => ['ActivityController', 'deleteActivity', ['id'],],

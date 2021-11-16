@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\ActivityManager;
 use App\Model\ChoiceManager;
-use App\Model\ItemManager;
+use App\Model\CommentManager;
 use App\Model\ProposeManager;
 use App\Model\RegisterManager;
 use App\Service\FormValidator;
@@ -76,6 +76,8 @@ class ActivityController extends AbstractController
                 $_SESSION['register']['id']
             );
         }
+        $commentManager = new CommentManager();
+        $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
         return $this->twig->render('Activity/show.html.twig', [
                 'activity' => $activity,
                 'proposes' => $proposes,
@@ -84,7 +86,8 @@ class ActivityController extends AbstractController
                 'vote_count_by_answer' => $voteCountByAnswer,
                 'errors' => $errors,
                 'ableToVote' => $ableToVote,
-                'proposeVoting' => $proposeVoting
+                'proposeVoting' => $proposeVoting,
+                'comments' => $comments,
             ]);
     }
 
@@ -99,13 +102,15 @@ class ActivityController extends AbstractController
         );
     }
 
-    public function deleteActivity()
+    public function addCommentByActivity($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id'];
-            $activityManager = new ActivityManager();
-            $activityManager->delete($id);
-            header('Location:/activite/tout-afficher');
+            $content = $_POST['content'];
+            $userId = $_SESSION['register']['id'];
+            $activityId = $_GET['id'];
+            $commentManager = new CommentManager();
+            $commentManager->insertCommentByActivityIdAndUserId($content, $activityId, $userId);
+            header('Location: /activite/afficher?id=' . $id);
         }
     }
 
