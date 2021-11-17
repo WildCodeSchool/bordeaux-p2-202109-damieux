@@ -17,7 +17,7 @@ class FormValidator
     {
         foreach ($this->posts as $key => $input) {
             if (is_string($input)) {
-                $this->posts[$key] = trim($input);
+                $this->posts[$key] = ucfirst(trim($input));
             }
         }
     }
