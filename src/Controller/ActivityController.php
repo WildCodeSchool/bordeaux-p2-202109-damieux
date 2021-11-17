@@ -42,7 +42,8 @@ class ActivityController extends AbstractController
             $swift->setPassword(APP_PASSWORD);
             $mailer = new Swift_Mailer($swift);
             $message = new Swift_Message();
-            $message->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
+            $message->setSubject('Nouvelle activité sur WilderEvent')
+                ->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
                 ->setTo(['wilderevent33@gmail.com'])
                 ->setBody('Une nouvelle activité a été créée');
             $mailer->send($message);
@@ -76,7 +77,8 @@ class ActivityController extends AbstractController
                 $swift->setPassword(APP_PASSWORD);
                 $mailer = new Swift_Mailer($swift);
                 $message = new Swift_Message();
-                $message->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
+                $message->setSubject('Réponse à votre sondage')
+                    ->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
                     ->setTo([$activity['mail']])
                     ->setBody('Un participant a répondu à votre sondage : ' . $activity['title']);
                 $mailer->send($message);
