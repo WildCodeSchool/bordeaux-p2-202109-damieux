@@ -6,7 +6,8 @@
 
 
 {% block content %}
-    <div class="card m-auto w-50 mt-5 bg-opacity-75 bg-light col col-lg-4 col-md-6 col-sm-10" xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid d-flex flex-wrap mb-3">
+    <div class="card mt-5 bg-opacity-75 bg-light col-lg-10 col-sm-12 mx-auto" xmlns="http://www.w3.org/1999/html">
         <div class="m-auto card-body">
             <div class="text-center">
                 <img src="https://avatars.githubusercontent.com/{{ user_data.github }}" class="rounded-pill" width="150px" height="150px" alt="profile">
@@ -22,7 +23,7 @@
             </ul>
         </div>
     </div>
-    <div class="accordion m-auto w-50 mt-5" id="accordionExample">
+    <div class="accordion col-lg-8 col-sm-10 mx-auto mt-3" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed color-button-bloc text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -37,5 +38,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}

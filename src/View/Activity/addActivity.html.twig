@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if session.register is not empty %}
+    {% if session.register is not defined %}
         <div class="d-flex justify-content-end mt-5 mx-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
