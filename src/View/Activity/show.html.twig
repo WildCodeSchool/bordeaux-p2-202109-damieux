@@ -50,7 +50,7 @@
                 <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
             </div>
         </div>
-
+        
      <div class="card col-sm-12 col-lg-5 mx-auto mb-3 bg-light bg-opacity-75">
          <div class="card-header text-center pt-2">
              <h2 class="fs-1">Poste ton commentaire</h2>
@@ -84,6 +84,13 @@
             </div>
         </div>
     </div>
+          {% if(session.register.is_admin) %}
+          <form class="d-flex justify-content-center mt-5" action="/activite/modif-active" method="POST">
+              <input type="hidden" name="id" value="{{ activity.id }}">
+              <button class="btn btn-danger">Enlever l'activité</button>
+          </form>
+          {% endif %}
+      </div>
 {% endblock %}
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
