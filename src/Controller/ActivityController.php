@@ -35,8 +35,6 @@ class ActivityController extends AbstractController
                 $id = $activityManager->insert($activities);
                 header('Location: /activite/ajout-proposition?id=' . $id);
             }
-
-            //todo send mail to admin for new activity created
             $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
             $swift->setUsername(APP_USERNAME);
             $swift->setPassword(APP_PASSWORD);
@@ -69,7 +67,6 @@ class ActivityController extends AbstractController
                     $choiceManager = new ChoiceManager();
                     $choiceManager->insertChoice($answer, $userId);
                 }
-                //todo send mail to activity user email
                 $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
                 $swift->setUsername(APP_USERNAME);
                 $swift->setPassword(APP_PASSWORD);
@@ -82,7 +79,6 @@ class ActivityController extends AbstractController
                 $mailer->send($message);
             }
         }
-
         $proposeManager = new ProposeManager();
         $registerManager = new RegisterManager();
         $creatorIid = $activity['user_id'];
@@ -104,6 +100,12 @@ class ActivityController extends AbstractController
                 $_SESSION['register']['id']
             );
         }
+        $commentErrors = [];
+        foreach ($_GET as $key => $value) {
+            if ($key !== 'id') {
+                $commentErrors[] = $value;
+            }
+        }
         $commentManager = new CommentManager();
         $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
         return $this->twig->render('Activity/show.html.twig', [
@@ -116,6 +118,7 @@ class ActivityController extends AbstractController
             'ableToVote' => $ableToVote,
             'proposeVoting' => $proposeVoting,
             'comments' => $comments,
+            'comment_errors' => $commentErrors,
         ]);
     }
 
@@ -123,7 +126,6 @@ class ActivityController extends AbstractController
     {
         $activityManager = new ActivityManager();
         $activities = $activityManager->selectActivityIsActive();
-
         return $this->twig->render(
             'Activity/showAll.html.twig',
             ['activities' => $activities]
@@ -132,13 +134,27 @@ class ActivityController extends AbstractController
 
     public function addCommentByActivity($id)
     {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $content = $_POST['content'];
+            $formValidator = new FormValidator($_POST);
+            $formValidator->trimAll();
+            $toCheckInputs = [
+                'content' => 'Le commentaire',
+            ];
+            $formValidator->checkEmptyInputs($toCheckInputs);
+            $content = $formValidator->getPosts();
+            $errors = $formValidator->getErrors();
             $userId = $_SESSION['register']['id'];
             $activityId = $_GET['id'];
-            $commentManager = new CommentManager();
-            $commentManager->insertCommentByActivityIdAndUserId($content, $activityId, $userId);
-            header('Location: /activite/afficher?id=' . $id);
+
+            if (empty($errors)) {
+                $commentManager = new CommentManager();
+                $commentManager->insertCommentByActivityIdAndUserId($content, $activityId, $userId);
+                header('Location:/activite/afficher?id=' . $id);
+            } else {
+                $queryString = http_build_query($errors);
+                header('Location:/activite/afficher?id=' . $id . '&' . $queryString);
+            }
         }
     }
 

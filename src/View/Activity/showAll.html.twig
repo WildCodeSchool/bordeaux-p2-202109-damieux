@@ -6,27 +6,30 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4 text-white">
+        {% if(session.register.is_admin) %}
+            <div class="d-flex justify-content-end mt-5 me-4 text-white">
+                <p class="fs-4">Administrateur</p>
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-end me-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-
-
     <div class="text-center text-white fs-1 mb-5">
         <h1>Activités</h1>
     </div>
     <div class="row container-fluid mt-5 d-flex flex-wrap justify-content-center px-5  ">
         {% for activity in activities %}
             <div class="card mb-5 col-sm-12 col-md-5 col-lg-3 opacity-75 mx-3 cards">
-                    <div class="card-body">
-                        <h2 class="card-title text-center fs-4">{{ activity.title }}</h2>
-                        <p class="card-text text-center text-dark">{{ activity.description|striptags|length > 80 ? activity.description|striptags|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '  [...]' : activity.description|striptags  }}</p>
-                        <p class="card-text"><small class="text-muted">Crée le {{ activity.created_at | date("d/m/Y") }}</small></p>
-                        <div class="d-flex justify-content-center">
-                           <a href="/activite/afficher?id={{ activity.id }}" class="color-text-danger fs-2">+</a>
+                <div class="card-body">
+                    <h2 class="card-title text-center fs-4">{{ activity.title }}</h2>
+                    <p class="card-text text-center text-dark">{{ activity.description|striptags|length > 80 ? activity.description|striptags|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '  [...]' : activity.description|striptags  }}</p>
+                    <p class="card-text"><small class="text-muted">Crée le {{ activity.created_at | date("d/m/Y") }}</small></p>
+                    <div class="d-flex justify-content-center">
+                        <a href="/activite/afficher?id={{ activity.id }}" class="color-text-danger fs-2">+</a>
                     </div>
+                </div>
             </div>
-        </div>
         {% else %}
             <div class="card mb-5 col-sm-12 col-md-5 col-lg-3 m-1 opacity-75 mx-3 p-4 ">
                 <h2>Aucune activité n'a été proposée</h2>

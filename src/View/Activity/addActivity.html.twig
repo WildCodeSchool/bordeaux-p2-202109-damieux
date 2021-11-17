@@ -6,7 +6,12 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4 text-white">
+        {% if(session.register.is_admin) %}
+            <div class="d-flex justify-content-end mt-5 me-4 text-white">
+                <p class="fs-4">Administrateur</p>
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-end me-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
