@@ -56,7 +56,6 @@ class ActivityController extends AbstractController
                     $choiceManager = new ChoiceManager();
                     $choiceManager->insertChoice($answer, $userId);
                 }
-                // var_dump($activity['mail']);die;
                 //todo send mail to activity user email
                 $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
                 $swift->setUsername(APP_USERNAME);

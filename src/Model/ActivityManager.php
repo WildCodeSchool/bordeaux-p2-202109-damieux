@@ -52,6 +52,5 @@ class ActivityManager extends AbstractManager
         $statement->bindvalue(':activityId', $activityId, \PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetch();
-
     }
 }
