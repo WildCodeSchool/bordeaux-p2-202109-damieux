@@ -47,10 +47,8 @@ class ActivityController extends AbstractController
                 ->setTo(['wilderevent33@gmail.com'])
                 ->setBody('Une nouvelle activité a été créée');
             $mailer->send($message);
-
-
-
         }
+
         return $this->twig->render('Activity/addActivity.html.twig', [
             'errors' => $errors
         ]);
