@@ -109,7 +109,7 @@ class ActivityController extends AbstractController
     public function showAll(): string
     {
         $activityManager = new ActivityManager();
-        $activities = $activityManager->selectAll();
+        $activities = $activityManager->selectActivityIsActive();
 
         return $this->twig->render(
             'Activity/showAll.html.twig',
@@ -129,4 +129,13 @@ class ActivityController extends AbstractController
         }
     }
 
+    public function updateActivityByIsActive()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $activityManager = new ActivityManager();
+            $activityManager->updateActivityIsActive((int)$_POST['id']);
+            header('Location:/activite/tout-afficher');
+        }
+    }
+}
 
