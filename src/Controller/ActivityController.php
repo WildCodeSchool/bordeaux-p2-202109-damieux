@@ -8,6 +8,9 @@ use App\Model\CommentManager;
 use App\Model\ProposeManager;
 use App\Model\RegisterManager;
 use App\Service\FormValidator;
+use Swift_SmtpTransport;
+use Swift_Mailer;
+use Swift_Message;
 
 class ActivityController extends AbstractController
 {
@@ -40,6 +43,8 @@ class ActivityController extends AbstractController
 
     public function show(int $activityId): string
     {
+        $activityManager = new ActivityManager();
+        $activity = $activityManager->getActivityWithMail($activityId);
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['answers'])) {
@@ -51,12 +56,22 @@ class ActivityController extends AbstractController
                     $choiceManager = new ChoiceManager();
                     $choiceManager->insertChoice($answer, $userId);
                 }
+                // var_dump($activity['mail']);die;
+                //todo send mail to activity user email
+                $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
+                $swift->setUsername(APP_USERNAME);
+                $swift->setPassword(APP_PASSWORD);
+                $mailer = new Swift_Mailer($swift);
+                $message = new Swift_Message();
+                $message->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
+                    ->setTo([$activity['mail']])
+                    ->setBody('Un participant a répondu à votre sondage : ' . $activity['title']);
+                $mailer->send($message);
             }
         }
-        $activityManager = new ActivityManager();
+
         $proposeManager = new ProposeManager();
         $registerManager = new RegisterManager();
-        $activity = $activityManager->selectOneById($activityId);
         $creatorIid = $activity['user_id'];
         $proposes = $proposeManager->selectProposesByActivityId($activityId);
         $userData = $registerManager->selectOneById($creatorIid);
