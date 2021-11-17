@@ -22,7 +22,8 @@ class CommentManager extends AbstractManager
         $statement = $this->pdo->prepare("SELECT c.*, u.firstname, u.github FROM comment c
             JOIN user u
             ON u.id = c.user_id
-            WHERE c.activity_id=:activity_id");
+            WHERE c.activity_id=:activity_id
+            ORDER BY created_at DESC");
         $statement->bindValue(':activity_id', $activityId, \PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll();

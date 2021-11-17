@@ -10,7 +10,8 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="card text-dark bg-light mb-3 m-auto w-75 mt-3 bg-opacity-75">
+    <div class="container-fluid">
+    <div class="card col-sm-12 col-lg-8 mx-auto text-dark bg-light mb-3 mt-3 bg-opacity-75">
         <div class="card-header text-center mb-3">
             <h1>Propositions</h1>
         </div>
@@ -34,6 +35,7 @@
                 </div>
             </form>
         </div>
+    </div>
     </div>
 {% endblock %}
 {% block javascript %}

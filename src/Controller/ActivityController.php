@@ -79,16 +79,16 @@ class ActivityController extends AbstractController
         $commentManager = new CommentManager();
         $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
         return $this->twig->render('Activity/show.html.twig', [
-                'activity' => $activity,
-                'proposes' => $proposes,
-                'user_data' => $userData,
-                'chart_proposes' => $chartProposes,
-                'vote_count_by_answer' => $voteCountByAnswer,
-                'errors' => $errors,
-                'ableToVote' => $ableToVote,
-                'proposeVoting' => $proposeVoting,
-                'comments' => $comments,
-            ]);
+            'activity' => $activity,
+            'proposes' => $proposes,
+            'user_data' => $userData,
+            'chart_proposes' => $chartProposes,
+            'vote_count_by_answer' => $voteCountByAnswer,
+            'errors' => $errors,
+            'ableToVote' => $ableToVote,
+            'proposeVoting' => $proposeVoting,
+            'comments' => $comments,
+        ]);
     }
 
     public function showAll(): string
@@ -113,5 +113,4 @@ class ActivityController extends AbstractController
             header('Location: /activite/afficher?id=' . $id);
         }
     }
-
-
+}
