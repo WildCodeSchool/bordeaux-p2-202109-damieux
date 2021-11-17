@@ -6,84 +6,77 @@
 
 
 {% block content %}
-
     {% if session.register is not empty %}
         <div class="d-flex justify-content-end mt-5 mx-4 text-white">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
- <div class="row row-cols-1 row-cols-md-2 g-3 mx-5">
-        <div class="card mt-3 mb-4  m-auto  bg-light bg-opacity-75 ">
-               <div class="card-header text-center">
-                  <h1>{{ activity.title }}</h1>
-               </div>
-                    <div class="card-body text-dark  ">
-                       <div class="fs-6 text-center border rounded-3 mb-2 bg-light p-2 text-dark bg-opacity-75  " >
-                           <p>{{ activity.description }}</p>
-                       </div>
-                    </div>
-            <div class=" text-center fs-4 border bg-light mt-5 mb-5   " >
-                <p>Voici les propositions pour cette activité :</p>
+    <div class="d-flex mx-5">
+        <div class="card col col-6 opacity-75 m-2">
+            <div class="card-header text-center">
+                <h1>{{ activity.title }}</h1>
             </div>
-            <div class="d-flex justify-content-center">
-                {% for error in errors %}
-                    <div class="m-auto text-center">
-                        <p class="text-danger">{{ error }}</p>
+                <div class="card-body">
+                    <div class="fs-6 text-center border rounded-3 mb-2 bg-light p-2 text-dark bg-opacity-75">
+                        <p>{{ activity.description }}</p>
                     </div>
-
-                {% endfor %}
-
-                <form action="" method="post" class="m-1">
-
-                    {% for propose in proposes %}
-                        <label class="btn btn-outline-danger rounded pill vote mx-3 mt-3" for={{propose.id}}>{{ propose.content }}</label>
-                        <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
-                    {% endfor %}
-                    <div class="d-flex justify-content-center mt-5">
-                        {% if ableToVote %}
-                            <button type="submit" class="btn btn-outline-danger rounded-pill">Valider</button>
-                        {% else %}
-                            <span>Vous avez déjà voté pour {{ proposeVoting.content }}</span>
-                        {% endif %}
+                    <h2 class="text-center mt-5 mb-5">Voici les propositions pour cette activité :</h2>
+                    <div class="d-flex justify-content-center">
+                        {% for error in errors %}
+                            <div class="m-auto text-center">
+                                <p class="text-danger">{{ error }}</p>
+                            </div>
+                        {% endfor %}
+                        <form action="" method="post" class="m-1">
+                            {% for propose in proposes %}
+                                <label class="btn btn-outline-danger rounded pill vote mx-3 mt-3" for={{propose.id}}>{{ propose.content }}</label>
+                                <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
+                            {% endfor %}
+                            <div class="d-flex justify-content-center mt-5">
+                                {% if ableToVote %}
+                                    <button type="submit" class="btn btn-outline-danger rounded-pill">Valider</button>
+                                {% else %}
+                                    <span>Vous avez déjà voté pour {{ proposeVoting.content }}</span>
+                                {% endif %}
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-
-            <div class="d-flex justify-content-start mx-3 ">
+                </div>
+            <div class="d-flex justify-content-start mx-3">
                 <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
             </div>
-         </div>
+            <form class="d-flex justify-content-center mt-5" action="/activite/supprimer" method="POST">
+            <input type="hidden" name="id" value="{{ activity.id }}">
+            <button class="btn btn-danger">Supprimer activité</button>
+        </form>
+        </div>
 
-
-
-
-            <div class=" row d-flex justify-content-center col-md-8 col-lg-6  mt-3 mb-4">
-                <div class="card shadow-0 border " >
-                    <div class="card-body p-4  ">
-                        <div class="form-outline mb-4">
-                            <input type="text" id="addANote" class="form-control" placeholder="ecrit ton commentaires"/>
-                            <button class="btn btn-outline-danger rounded pill vote mx-3 mt-3" type="button">Envoyer</button>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <p>cette activité a l'air bien nul sans biere</p>
-
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <img
-                                                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg"
-                                                alt="avatar"
-                                                width="25"
-                                                height="25"
-                                        />
-                                        <p class="small mb-0 ms-2">greg<span class="small"> - il y a 15 min</span></p>
+     <div class="card col col-6 m-2">
+            <div class="card-body">
+                <h2 class="text-center m-3">Poste ton commentaire</h2>
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4">
+                            <form class="form-outline mb-4" method="post" action="/activite/ajout-comment?id={{ activity.id }}">
+                                <textarea name="content" class="form-control" placeholder="Ecris un commentaire"></textarea>
+                                <button class="btn btn-outline-danger rounded pill vote mx-3 mt-3" type="submit">Envoyer</button>
+                            </form>
+                                <div class="mb-2">
+                                    <div class="card-body">
+                                            {% for comment in comments %}
+                                            <div style="overflow: scroll">
+                                                <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment"> {{ comment.firstname }}</p>
+                                                <p>{{ comment.content }}</p>
+                                            </div>
+                                            {% else %}
+                                            <div>
+                                                <p>Aucun commentaire</p>
+                                            </div>
+                                            {% endfor %}
                                     </div>
                                 </div>
-                            </div>
                         </div>
-
-                     </div>
-                   </div>
+                    </div>
+                </div>
             </div>
   </div>
       <div class ="card bg-light bg-opacity-75  w-50 m-auto">
@@ -97,6 +90,7 @@
           </form>
           {% endif %}
       </div>
+
 
 
 {% endblock %}

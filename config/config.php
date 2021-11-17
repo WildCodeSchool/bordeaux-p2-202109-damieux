@@ -8,6 +8,7 @@ define('DB_PASSWORD', getenv('DB_PASSWORD') ? getenv('DB_PASSWORD') : APP_DB_PAS
 define('DB_HOST', getenv('DB_HOST') ? getenv('DB_HOST') : APP_DB_HOST);
 define('DB_NAME', getenv('DB_NAME') ? getenv('DB_NAME') : APP_DB_NAME);
 
+
 //VIew
 define('APP_VIEW_PATH', __DIR__ . '/../src/View/');
 

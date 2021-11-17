@@ -54,7 +54,6 @@ footer {
 }
 #bootstrap-override .form-control:active {
     border-color:var(--secondary);
-    text-decoration: underline;
 }
 #bootstrap-override .btn-outline-danger:hover{
     background-color: var(--primary);
