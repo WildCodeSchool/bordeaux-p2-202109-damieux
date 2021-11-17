@@ -7,29 +7,29 @@
 
 {% block content %}
     {% if session.register is not empty %}
-        <div class="d-flex justify-content-end mt-5 mx-4 text-white">
+        <div class="d-flex justify-content-end mt-5 text-white mx-3">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="d-flex mx-5">
-        <div class="card col col-6 opacity-75 m-2">
+    <div class="container-fluid d-flex flex-wrap mt-5">
+        <div class="card col-sm-12 mx-auto mb-3 col-lg-5 opacity-75">
             <div class="card-header text-center">
                 <h1>{{ activity.title }}</h1>
             </div>
                 <div class="card-body">
-                    <div class="fs-6 text-center border rounded-3 mb-2 bg-light p-2 text-dark bg-opacity-75">
+                    <div class="fs-6 text-center border rounded-3 mb-2 bg-white p-2 text-dark">
                         <p>{{ activity.description }}</p>
                     </div>
-                    <h2 class="text-center mt-5 mb-5">Voici les propositions pour cette activité :</h2>
+                    <h3 class="text-center fs-4 mt-3 mb-5">Voici les propositions pour cette activité :</h3>
                     <div class="d-flex justify-content-center">
-                        {% for error in errors %}
-                            <div class="m-auto text-center">
-                                <p class="text-danger">{{ error }}</p>
-                            </div>
-                        {% endfor %}
                         <form action="" method="post" class="m-1">
+                            {% for error in errors %}
+                                <div class="m-auto text-center">
+                                    <p class="text-danger">{{ error }}</p>
+                                </div>
+                            {% endfor %}
                             {% for propose in proposes %}
-                                <label class="btn btn-outline-danger rounded pill vote mx-3 mt-3" for={{propose.id}}>{{ propose.content }}</label>
+                                <label class="btn btn-outline-danger rounded pill vote me-2" for={{propose.id}}>{{ propose.content }}</label>
                                 <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
                             {% endfor %}
                             <div class="d-flex justify-content-center mt-5">
@@ -42,47 +42,48 @@
                         </form>
                     </div>
                 </div>
+            <form class="d-flex justify-content-center mt-5" action="/activite/supprimer" method="POST">
+                <input type="hidden" name="id" value="{{ activity.id }}">
+                <button class="btn btn-danger">Enlever l'activité</button>
+            </form>
             <div class="d-flex justify-content-start mx-3">
                 <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
             </div>
-            <form class="d-flex justify-content-center mt-5" action="/activite/supprimer" method="POST">
-            <input type="hidden" name="id" value="{{ activity.id }}">
-            <button class="btn btn-danger">Supprimer activité</button>
-        </form>
         </div>
-
-     <div class="card col col-6 m-2">
-            <div class="card-body">
-                <h2 class="text-center m-3">Poste ton commentaire</h2>
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4">
-                            <form class="form-outline mb-4" method="post" action="/activite/ajout-comment?id={{ activity.id }}">
-                                <textarea name="content" class="form-control" placeholder="Ecris un commentaire"></textarea>
-                                <button class="btn btn-outline-danger rounded pill vote mx-3 mt-3" type="submit">Envoyer</button>
-                            </form>
-                                <div class="mb-2">
-                                    <div class="card-body">
-                                            {% for comment in comments %}
-                                            <div style="overflow: scroll">
-                                                <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment"> {{ comment.firstname }}</p>
-                                                <p>{{ comment.content }}</p>
-                                            </div>
-                                            {% else %}
-                                            <div>
-                                                <p>Aucun commentaire</p>
-                                            </div>
-                                            {% endfor %}
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-  </div>
-      <div class ="card bg-light bg-opacity-75  w-50 m-auto">
-             <div>
-                <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+        
+     <div class="card col-sm-12 col-lg-5 mx-auto mb-3 bg-light bg-opacity-75">
+         <div class="card-header text-center pt-2">
+             <h2 class="fs-1">Poste ton commentaire</h2>
+         </div>
+         <div class="card-body p-4">
+             <form class="form-outline mb-4" method="post" action="/activite/ajout-comment?id={{ activity.id }}">
+                 <textarea name="content" class="form-control" placeholder="Ecris un commentaire"></textarea>
+                    <button class="btn btn-outline-danger rounded pill vote mx-3 mt-3" type="submit">Envoyer</button>
+             </form>
+                 <div class="card-body mb-2 scroll">
+                     {% for comment in comments %}
+                         <div class="mb-2 bg-white rounded p-2">
+                             <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment">  {{ comment.firstname }}</p>
+                             <p>{{ comment.content }}</p>
+                             <p class="text-muted"><small>Le {{ comment.created_at | date("d/m/Y G:i") }}</small></p>
+                         </div>
+                     {% else %}
+                         <div>
+                             <p>Aucun commentaire pour le moment</p>
+                         </div>
+                     {% endfor %}
+                 </div>
              </div>
+         </div>
+
+
+        <div class ="card col-sm-12 col-lg-6 mx-auto bg-light text-center bg-opacity-75 p-3 mb-5">
+            <h3 class="m-3">Résultats des votes</h3>
+            <div>
+                <canvas id="myChart" width="300" height="300" data-count="{{ vote_count_by_answer|join(',') }}" data-answers="{{ chart_proposes|join(',') }}"></canvas>
+            </div>
+        </div>
+    </div>
           {% if(session.register.is_admin) %}
           <form class="d-flex justify-content-center mt-5" action="/activite/modif-active" method="POST">
               <input type="hidden" name="id" value="{{ activity.id }}">
@@ -90,9 +91,6 @@
           </form>
           {% endif %}
       </div>
-
-
-
 {% endblock %}
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
