@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    {% if session.register is not defined %}
+    {% if session.register is not empty %}
         <div class="d-flex justify-content-end mt-5 text-white mx-3">
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
@@ -92,6 +92,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="/assets/js/chart-bar.js"></script>
 <script src="/assets/js/button.js"></script>
-
 {% endblock %}
 
