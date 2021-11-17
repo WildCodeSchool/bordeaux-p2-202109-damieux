@@ -42,6 +42,7 @@ class ActivityManager extends AbstractManager
             " SET is_active = false WHERE id = :id ");
         $statement->bindValue('id', $activityId, \PDO::PARAM_INT);
         return $statement->execute();
+    }
 
     public function getActivityWithMail(int $activityId): array
     {
