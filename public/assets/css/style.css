@@ -40,7 +40,6 @@ footer {
 .cards:hover{
     transform:scale(1.08);
 }
-
 .cards{
     transition: transform .4s;
 }
@@ -140,6 +139,3 @@ canvas{
         transform: none;
     }
 }
-
-
-

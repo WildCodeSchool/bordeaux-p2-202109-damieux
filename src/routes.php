@@ -1,12 +1,12 @@
 <?php
 
 return [
-    //''                        => ['HomeController', 'index',],
-    //'items'                   => ['ItemController', 'index',],
-    //'items/edit'              => ['ItemController', 'edit', ['id']],
-    //'items/show'              => ['ItemController', 'show', ['id']],
-    //'items/add'               => ['ItemController', 'add',],
-    //'items/delete'            => ['ItemController', 'delete',],
+    //''                         => ['HomeController', 'index',],
+    //'items'                    => ['ItemController', 'index',],
+    //'items/edit'               => ['ItemController', 'edit', ['id']],
+    //'items/show'               => ['ItemController', 'show', ['id']],
+    //'items/add'                => ['ItemController', 'add',],
+    //'items/delete'             => ['ItemController', 'delete',],
     ''                           => ['RegisterController', 'connect'],
     'activite/ajout-activite'    => ['ActivityController', 'add',],
     'activite/ajout-comment'     => ['ActivityController', 'addCommentByActivity', ['id']],
