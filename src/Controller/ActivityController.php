@@ -35,6 +35,20 @@ class ActivityController extends AbstractController
                 $id = $activityManager->insert($activities);
                 header('Location: /activite/ajout-proposition?id=' . $id);
             }
+
+            //todo send mail to admin for new activity created
+            $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
+            $swift->setUsername(APP_USERNAME);
+            $swift->setPassword(APP_PASSWORD);
+            $mailer = new Swift_Mailer($swift);
+            $message = new Swift_Message();
+            $message->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
+                ->setTo(['wilderevent33@gmail.com'])
+                ->setBody('Une nouvelle activité a été créée');
+            $mailer->send($message);
+
+
+
         }
         return $this->twig->render('Activity/addActivity.html.twig', [
             'errors' => $errors
@@ -137,4 +151,3 @@ class ActivityController extends AbstractController
         }
     }
 }
-
