@@ -42,10 +42,6 @@
                         </form>
                     </div>
                 </div>
-            <form class="d-flex justify-content-center mt-5" action="/activite/supprimer" method="POST">
-                <input type="hidden" name="id" value="{{ activity.id }}">
-                <button class="btn btn-danger">Enlever l'activité</button>
-            </form>
             <div class="d-flex justify-content-start mx-3">
                 <a class="text-decoration-none text-muted" href="/user/profil?id={{ user_data.id }}"><small>Crée par {{ user_data.firstname }} {{ user_data.lastname }}</small></a>
             </div>
