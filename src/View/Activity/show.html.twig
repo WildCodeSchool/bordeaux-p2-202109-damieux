@@ -15,7 +15,7 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="row container-fluid d-flex flex-wrap mt-5">
+    <div class="row container-fluid mx-auto d-flex flex-wrap mt-5 mb-5">
         <div class="card col-sm-12 mx-auto mb-3 col-lg-5 opacity-75">
             <div class="text-center mt-3">
                 <h1>{{ activity.title }}</h1>
@@ -56,16 +56,18 @@
             </div>
             <div class="card-body p-4">
                 <form class="form-outline mb-4" method="post" action="/activite/ajout-comment?id={{ activity.id }}">
-                    <textarea name="content" class="form-control" placeholder="Ecris un commentaire"></textarea>
+                    <textarea name="content" class="form-control" placeholder="Laisse un commentaire"></textarea>
                     {% for comment_error in comment_errors %}
                         <p class="text-danger text-center mt-2">{{ comment_error }}</p>
                     {% endfor %}
-                        <button class="btn btn-outline-danger rounded pill vote" type="submit">Envoyer</button>
+                        <button class="btn btn-outline-danger rounded pill vote mt-3" type="submit">Envoyer</button>
                 </form>
                  <div class="card-body mb-2 scroll">
                      {% for comment in comments %}
                          <div class="mb-2 bg-white rounded p-2">
-                             <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment">  {{ comment.firstname }}</p>
+                             <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment">
+                                 <a class="text-dark" href="/user/profil?id={{ user_data.id }}">{{ comment.firstname }}</a>
+                             </p>
                              <p>{{ comment.content }}</p>
                              <p class="text-muted"><small>Le {{ comment.created_at | date("d/m/Y G:i") }}</small></p>
                          </div>
