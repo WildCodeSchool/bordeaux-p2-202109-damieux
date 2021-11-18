@@ -13,7 +13,7 @@ class FormValidator
         $this->posts = $posts;
     }
 
-    public function trimAll(): void
+    public function trimAllAndUcfirt(): void
     {
         foreach ($this->posts as $key => $input) {
             if (is_string($input)) {

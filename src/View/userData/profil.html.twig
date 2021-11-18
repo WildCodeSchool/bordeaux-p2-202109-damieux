@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <div class="container-fluid d-flex flex-wrap mb-3">
+    <div class="container-fluid d-flex flex-wrap mb-5">
         <div class="card mt-5 bg-opacity-75 bg-light col-lg-10 col-sm-12 mx-auto" xmlns="http://www.w3.org/1999/html">
             <div class="m-auto card-body">
                 <div class="text-center">
@@ -34,6 +34,8 @@
                     <div class="accordion-body">
                         {% for activity in activities %}
                             <p><a href="/activite/afficher?id={{ activity.id }}" class="text-decoration-none color-text-danger">{{ activity.title }}</a> : {{ activity.description }}</p>
+                            {% else %}
+                            <p class="text-center">Aucune activité proposée</p>
                         {% endfor %}
                     </div>
                 </div>

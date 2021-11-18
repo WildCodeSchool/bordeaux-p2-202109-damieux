@@ -19,7 +19,7 @@ class ActivityController extends AbstractController
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formValidator = new FormValidator($_POST);
-            $formValidator->trimAll();
+            $formValidator->trimAllAndUcfirt();
             $toCheckInputs = [
                 'title' => 'Le titre',
                 'description' => 'La description'
@@ -137,7 +137,7 @@ class ActivityController extends AbstractController
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formValidator = new FormValidator($_POST);
-            $formValidator->trimAll();
+            $formValidator->trimAllAndUcfirt();
             $toCheckInputs = [
                 'content' => 'Le commentaire',
             ];
