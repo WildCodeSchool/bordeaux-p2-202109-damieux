@@ -33,7 +33,6 @@ html, body {
     height: 100%;
     margin: 0; padding: 0;
 }
-
 footer {
     display : table-row;
     height: 100px;
@@ -50,7 +49,6 @@ footer {
 #bootstrap-override .override-red-over:hover {
     color:var(--primary);
     border-bottom: 2px solid var(--primary);
-
 }
 #bootstrap-override .form-control:focus {
     border-color:var(--secondary);

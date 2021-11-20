@@ -20,7 +20,7 @@ class ActivityManager extends AbstractManager
 
     public function getActivitiesFromUserId(int $userId): array
     {
-        $query = 'SELECT * FROM activity where user_id = :userId';
+        $query = 'SELECT * FROM activity where user_id = :userId AND is_active = true';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':userId', $userId);
         $statement->execute();
