@@ -66,7 +66,7 @@
                      {% for comment in comments %}
                          <div class="mb-2 bg-white rounded p-2">
                              <p><img src="https://avatars.githubusercontent.com/{{ comment.github }}" class="rounded-pill" width="30px" height="30px" alt="comment">
-                                 <a class="text-dark" href="/user/profil?id={{ user_data.id }}">{{ comment.firstname }}</a>
+                                 <a class="text-dark" href="/user/profil?id={{ comment.user_id }}">{{ comment.firstname }}</a>
                              </p>
                              <p>{{ comment.content }}</p>
                              <p class="text-muted"><small>Le {{ comment.created_at | date("d/m/Y G:i") }}</small></p>
