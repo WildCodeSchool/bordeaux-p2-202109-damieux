@@ -27,12 +27,9 @@ class ActivityManager extends AbstractManager
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function selectActivityIsActive(string $orderBy = '', string $direction = 'ASC'): array
+    public function selectActivityIsActive(): array
     {
-        $query = 'SELECT * FROM activity WHERE is_active = true';
-        if ($orderBy) {
-            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
-        }
+        $query = 'SELECT * FROM activity WHERE is_active = true ORDER BY created_at DESC';
         return $this->pdo->query($query)->fetchAll();
     }
 
