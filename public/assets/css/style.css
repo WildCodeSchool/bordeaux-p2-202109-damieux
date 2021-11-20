@@ -21,7 +21,7 @@ li, ul {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url("/assets/images/background.jpg");
+    background-image: url("/assets/images/subtle-prism1.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
