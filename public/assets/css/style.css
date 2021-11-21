@@ -1,6 +1,7 @@
 :root {
     --primary:#ED503A;
     --secondary:#F5F5F7;
+    --thirdary: #0E0B0B;
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
@@ -84,6 +85,10 @@ footer {
 }
 #bootstrap-override .color-button-bloc {
     background-color: var(--primary);
+}
+#bootstrap-override .color-button-bloc-dark {
+    background-color: #F5F5F7;
+    border-color: 5px solid var(--thirdary);
 }
 .slideInUp {
     animation-name: slideInUp;

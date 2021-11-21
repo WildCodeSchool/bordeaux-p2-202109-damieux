@@ -40,7 +40,11 @@
                                 {% if ableToVote %}
                                     <button type="submit" class="btn btn-outline-danger rounded-pill">Valider</button>
                                 {% else %}
-                                    <span>Vous avez déjà voté pour {{ proposeVoting.content }}</span>
+                                    <div class="justify-content-center fs-6">Vous avez déjà voté pour
+                                        <p class="justify-content-center m-auto text-center fs-5 font-weight-bold text-danger">
+                                            " {{ proposeVoting.content }} "
+                                        </p>
+                                    </div>
                                 {% endif %}
                             </div>
                         </form>
