@@ -40,6 +40,7 @@ footer {
 }
 .cards:hover{
     transform:scale(1.08);
+    background-color: #F8C133;
 }
 .cards{
     transition: transform .4s;

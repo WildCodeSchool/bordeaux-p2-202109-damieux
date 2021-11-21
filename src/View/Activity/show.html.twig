@@ -33,12 +33,12 @@
                                 </div>
                             {% endfor %}
                             {% for propose in proposes %}
-                                <label class="btn btn-outline-danger rounded pill vote me-2" for={{propose.id}}>{{ propose.content }}</label>
+                                <label class="btn btn-warning rounded pill vote me-2" for={{propose.id}}>{{ propose.content }}</label>
                                 <input id={{propose.id}} class='d-none' type="checkbox" value="{{ propose.id }}" name=answers[]>
                             {% endfor %}
                             <div class="d-flex justify-content-center mt-5">
                                 {% if ableToVote %}
-                                    <button type="submit" class="btn btn-outline-danger rounded-pill">Valider</button>
+                                    <button type="submit" class="btn btn-outline-danger border-2 rounded-pill">Valider</button>
                                 {% else %}
                                     <div class="justify-content-center fs-6">Vous avez déjà voté pour
                                         <p class="justify-content-center m-auto text-center fs-5 font-weight-bold text-danger">
@@ -64,7 +64,7 @@
                     {% for comment_error in comment_errors %}
                         <p class="text-danger text-center mt-2">{{ comment_error }}</p>
                     {% endfor %}
-                        <button class="btn btn-outline-danger rounded pill vote mt-3" type="submit">Envoyer</button>
+                        <button class="btn btn-outline-danger border-2 rounded-pill vote mt-3" type="submit">Envoyer</button>
                 </form>
                  <div class="card-body mb-2 scroll">
                      {% for comment in comments %}
