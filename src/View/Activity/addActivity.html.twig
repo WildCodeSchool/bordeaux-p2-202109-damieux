@@ -15,11 +15,11 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
+    <div class="text-center text-white fs-1 mb-5">
+        <h1>Créer une activité</h1>
+    </div>
     <div class="container-fluid mb-5">
         <div class="card col-sm-12 col-lg-10 mx-auto text-dark bg-light mb-3 mt-3 bg-opacity-75">
-            <div class="card-header text-center">
-                <h1>Créer une activité</h1>
-            </div>
             {% for error in errors %}
                 <div class="m-auto mt-2 text-center">
                     <p class="text-danger">{{ error }}</p>
@@ -28,13 +28,13 @@
             <div class="card-body">
                 <form action="" class="col col-lg-4 col-md-6 col-sm-10 p-4 m-auto w-75" method="post">
                     <div class="placeholder-title">
-                        <input type="text" name="title" class="form-control border-0 border-bottom rounded-0 rounded-top fs-4 p-4" placeholder="Titre de l'événement" autofocus>
+                        <input type="text" name="title" class="form-control border-0 border-bottom rounded-0 rounded-top fs-6 p-4" placeholder="Le titre de ton événement" autofocus>
                     </div>
                     <div class="form-group fs-1">
-                        <textarea type="text" name="description" class="form-control border-0 rounded-0 rounded-bottom fs-5 p-4" placeholder="Description"></textarea>
+                        <textarea type="text" name="description" class="form-control border-0 rounded-0 rounded-bottom fs-6 p-4" placeholder="En quelques mots, décris-nous l'activité que tu souhaites organiser..."></textarea>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-outline-danger color-text-danger btn-sm mb-3 mt-4 p-2 fs-5 rounded-pill border-2" type="submit">Suivant</button>
+                        <button class="btn btn-outline-dark color-text-dark btn-sm mb-3 mt-4 p-2 fs-5 border-2" type="submit">Suivant</button>
                     </div>
                 </form>
             </div>
