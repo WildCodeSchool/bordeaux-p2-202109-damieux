@@ -3,6 +3,7 @@ const answerComma = ctx.dataset.answers;
 const answers = answerComma.split(',');
 const countChoiceComma = ctx.dataset.count;
 const countChoices = countChoiceComma.split(',');
+
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {

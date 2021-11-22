@@ -92,6 +92,8 @@ class ActivityController extends AbstractController
             $voteCountByAnswer[] = $choiceManager->countVoteByProposition($propose['id'])['count'];
         }
         $votingUsersId = $choiceManager->selectVotingUsersIdsByActivityId($activityId);
+        $userNameByVotings = $choiceManager->showVotingUserByProposeId($activityId);
+
         $ableToVote = !(in_array($_SESSION['register']['id'], $votingUsersId));
         $proposeVoting = null;
         if (!$ableToVote) {
@@ -119,6 +121,7 @@ class ActivityController extends AbstractController
             'proposeVoting' => $proposeVoting,
             'comments' => $comments,
             'comment_errors' => $commentErrors,
+            'users_by_voting' => $userNameByVotings
         ]);
     }
 

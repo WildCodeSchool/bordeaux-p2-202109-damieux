@@ -48,4 +48,17 @@ class ChoiceManager extends AbstractManager
         $statement->execute();
         return $statement->fetch();
     }
+
+    public function showVotingUserByProposeId(int $activityId): array
+    {
+        $statement = $this->pdo->prepare("SELECT u.firstname, p.content FROM choice c 
+            JOIN proposition p ON p.id=c.proposition_id
+            JOIN activity a ON a.id=p.activity_id
+            JOIN user u ON u.id = c.user_id
+            WHERE a.id =:activity_id
+            ORDER BY p.content;");
+        $statement->bindValue(':activity_id', $activityId, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 }
