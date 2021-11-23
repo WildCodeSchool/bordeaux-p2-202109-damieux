@@ -27,4 +27,17 @@ class RegisterManager extends AbstractManager
         $statement->execute();
         return $statement->fetch();
     }
+
+    public function update(array $userData): bool
+    {
+        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET firstname=:firstname,
+         lastname=:lastname,
+         github=:github
+         WHERE id=:id");
+        $statement->bindValue(':id', $userData['id'], \PDO::PARAM_INT);
+        $statement->bindValue(':firstname', $userData['firstname'], \PDO::PARAM_STR);
+        $statement->bindValue(':lastname', $userData['lastname'], \PDO::PARAM_STR);
+        $statement->bindValue(':github', $userData['github'], \PDO::PARAM_STR);
+        return $statement->execute();
+    }
 }

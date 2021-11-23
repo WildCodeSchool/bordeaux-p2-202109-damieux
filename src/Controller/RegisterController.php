@@ -83,4 +83,17 @@ class RegisterController extends AbstractController
             'activities' => $activities,
         ]);
     }
+
+    public function edit(int $id): string
+    {
+        $registerManager = new RegisterManager();
+        $userData = $registerManager->selectOneById($id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userData = array_map('trim', $_POST);
+            $userData['id'] = $_GET['id'];
+            $registerManager->update($userData);
+            header('Location: /user/profil?id=' . $id);
+        }
+        return $this->twig->render('userData/edit.html.twig', ['user_data' => $userData]);
+    }
 }
