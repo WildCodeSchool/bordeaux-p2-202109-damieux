@@ -20,6 +20,10 @@ li, ul {
     overflow: auto;
     height: 300px
 }
+.scrollDrop {
+    overflow: scroll;
+    height: 200px;
+}
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url("/assets/images/subtle-prism1.svg");

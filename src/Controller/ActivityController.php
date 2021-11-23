@@ -16,6 +16,9 @@ class ActivityController extends AbstractController
 {
     public function add(): string
     {
+        if (!isset($_SESSION['register'])) {
+            header('Location: /');
+        }
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formValidator = new FormValidator($_POST);
@@ -54,6 +57,9 @@ class ActivityController extends AbstractController
 
     public function show(int $activityId): string
     {
+        if (!isset($_SESSION['register'])) {
+            header('Location: /');
+        }
         $activityManager = new ActivityManager();
         $activity = $activityManager->getActivityWithMail($activityId);
         $errors = [];
@@ -93,7 +99,6 @@ class ActivityController extends AbstractController
         }
         $votingUsersId = $choiceManager->selectVotingUsersIdsByActivityId($activityId);
         $userNameByVotings = $choiceManager->showVotingUserByProposeId($activityId);
-
         $ableToVote = !(in_array($_SESSION['register']['id'], $votingUsersId));
         $proposeVoting = null;
         if (!$ableToVote) {
@@ -110,6 +115,13 @@ class ActivityController extends AbstractController
         }
         $commentManager = new CommentManager();
         $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
+
+        $sortedUsers = [];
+        foreach ($userNameByVotings as $userData) {
+            $content = $userData['content'];
+            $sortedUsers[$content][] = $userData;
+        }
+
         return $this->twig->render('Activity/show.html.twig', [
             'activity' => $activity,
             'proposes' => $proposes,
@@ -121,12 +133,15 @@ class ActivityController extends AbstractController
             'proposeVoting' => $proposeVoting,
             'comments' => $comments,
             'comment_errors' => $commentErrors,
-            'users_by_voting' => $userNameByVotings
+            'users_by_voting' => $sortedUsers
         ]);
     }
 
     public function showAll(): string
     {
+        if (!isset($_SESSION['register'])) {
+            header('Location: /');
+        }
         $activityManager = new ActivityManager();
         $activities = $activityManager->selectActivityIsActive();
         return $this->twig->render(
