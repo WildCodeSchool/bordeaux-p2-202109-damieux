@@ -15,7 +15,8 @@ return [
     'activite/modif-active'      => ['ActivityController', 'updateActivityByIsActive', ['id']],
     'activite/tout-afficher'     => ['ActivityController', 'showAll', ['id'],],
     'user/inscription'           => ['RegisterController', 'add',],
+    'user/edit'                  => ['RegisterController', 'edit', ['id']],
     'deconnecter'                => ['RegisterController', 'logout'],
     'user/profil'                => ['RegisterController', 'profil', ['id']],
-    'communauté'                 => ['CommunityController', 'showUser'],
+    'communauté'                 => ['CommunityController', 'showUser', ['id']],
     ];
