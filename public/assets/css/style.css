@@ -1,6 +1,7 @@
 :root {
     --primary:#ED503A;
     --secondary:#F5F5F7;
+    --thirdary: #0E0B0B;
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
@@ -21,7 +22,7 @@ li, ul {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url("/assets/images/background.jpg");
+    background-image: url("/assets/images/subtle-prism1.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,6 +40,7 @@ footer {
 }
 .cards:hover{
     transform:scale(1.08);
+    background-color: #efbfbf;
 }
 .cards{
     transition: transform .4s;
@@ -71,19 +73,32 @@ footer {
 #bootstrap-override .accordion-button:focus {
     box-shadow: none;
 }
+
 #bootstrap-override .accordion-button::after {
     flex-shrink: 0;
     margin-left: 0;
     box-shadow: none;
 }
 #bootstrap-override .accordion-item {
-    border: none;
+    border: 1px solid #0E0B0B;
+    background-color: #F5F5F7;
 }
+#bootstrap-override .accordion-item:hover {
+    transform:scale(1.02);
+}
+#bootstrap-override .my-activities{
+    color: var(--primary);
+}
+
 #text-decoration-none {
     color:var(--primary);
 }
 #bootstrap-override .color-button-bloc {
     background-color: var(--primary);
+}
+#bootstrap-override .color-button-bloc-dark {
+    background-color: #F5F5F7;
+    border-color: 5px solid var(--thirdary);
 }
 .slideInUp {
     animation-name: slideInUp;
