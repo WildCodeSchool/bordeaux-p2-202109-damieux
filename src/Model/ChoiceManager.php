@@ -51,7 +51,7 @@ class ChoiceManager extends AbstractManager
 
     public function showVotingUserByProposeId(int $activityId): array
     {
-        $statement = $this->pdo->prepare("SELECT u.firstname, p.content FROM choice c 
+        $statement = $this->pdo->prepare("SELECT u.id ,u.firstname, p.content FROM choice c 
             JOIN proposition p ON p.id=c.proposition_id
             JOIN activity a ON a.id=p.activity_id
             JOIN user u ON u.id = c.user_id

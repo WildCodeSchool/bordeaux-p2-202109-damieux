@@ -42,8 +42,9 @@
                                     <button type="submit" class="btn btn-outline-dark btn-lg">Valider</button>
                                 </div>
                                 {% else %}
-                                    <div class="justify-content-center fs-6">Tu as voté pour
-                                        <p class="justify-content-center m-auto text-center fs-5 font-weight-bold">
+                                    <div class="justify-content-center m-auto text-center fs-6">
+                                        <p>Tu as voté pour</p>
+                                        <p class="justify-content-center fs-5 font-weight-bold">
                                             " {{ proposeVoting.content }} "
                                         </p>
                                     </div>
@@ -58,13 +59,20 @@
         </div>
         <div class ="card col-sm-12 col-lg-6 mx-auto mb-3 border-1 text-center">
             <h2 class="m-3 fs-1">Résultats des votes</h2>
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around mt-5">
                 <div>
-                    {% for user in users_by_voting %}
-                        {% if  users_by_voting[(loop.index -2)].content  != user.content %}
-                            <p class="fs-6 text-danger">{{ user.content }}</p>
-                        {% endif %}
-                        <p>{{ user.firstname }}</p>
+
+                    {% for content, users in users_by_voting %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark mt-3 dropdown-toggle w-100" type="button" id="dropdown-{{ loop.index }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ content }}
+                            </button>
+                            <ul class="dropdown-menu scrollDrop" aria-labelledby="dropdown-{{ loop.index }}">
+                                {% for user in users %}
+                                <li><a class="dropdown-item" href="/user/profil?id={{ user.id }}">{{ user.firstname }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% else %}
                         <p>Aucun vote pour le moment</p>
                     {% endfor %}

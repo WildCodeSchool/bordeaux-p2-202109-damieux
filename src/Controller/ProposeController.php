@@ -9,6 +9,9 @@ class ProposeController extends AbstractController
 {
     public function addPropose(): string
     {
+        if (!isset($_SESSION['register'])) {
+            header('Location: /');
+        }
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formValidator = new ProposeValidator($_POST);
