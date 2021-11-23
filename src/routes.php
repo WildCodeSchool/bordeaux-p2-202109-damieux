@@ -18,5 +18,5 @@ return [
     'user/edit'                  => ['RegisterController', 'edit', ['id']],
     'deconnecter'                => ['RegisterController', 'logout'],
     'user/profil'                => ['RegisterController', 'profil', ['id']],
-    'communauté'                 => ['CommunityController', 'showUser', ['id']],
+    'communaute'                 => ['CommunityController', 'showUser'],
     ];

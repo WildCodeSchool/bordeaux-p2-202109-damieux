@@ -9,7 +9,7 @@
             <div class="navbar-nav">
                 <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/activite/tout-afficher' }}"><i class="fab fa-buffer override-red"></i> Activités</a>
                 <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/activite/ajout-activite' }}"><i class="far fa-plus-square override-red"></i> Créer une activité</a>
-                <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/communauté' }}"><i class="fas fa-users override-red"></i> Communauté</a>
+                <a class="nav-link m-3 fs-5 override-red-over active" href="{{session.register is empty ? '/' : '/communaute' }}"><i class="fas fa-users override-red"></i> Communauté</a>
                 {% if session.register is not empty %}
                 <a class="nav-link m-3 fs-5 override-red-over active" href="/user/profil?id={{ session.register.id }}"><li class="fas fa-user override-red"></li> Mon profil</a>
                 <a class="nav-link m-3 fs-5 override-red-over active" href="/deconnecter"><i class="fas fa-sign-out-alt override-red"></i> Déconnexion</a>
