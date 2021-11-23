@@ -15,11 +15,11 @@
             <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
         </div>
     {% endif %}
-    <div class="text-center text-white fs-1 mb-5">
+    <div class="text-center text-white fs-1 mb-2">
         <h1>Créer une activité</h1>
     </div>
     <div class="container-fluid mb-5">
-        <div class="card col-sm-12 col-lg-10 mx-auto text-dark bg-light mb-3 mt-3 bg-opacity-75">
+        <div class="col-sm-12 col-lg-10 mx-auto text-dark mb-3">
             {% for error in errors %}
                 <div class="m-auto mt-2 text-center">
                     <p class="text-danger">{{ error }}</p>

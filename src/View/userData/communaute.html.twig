@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{parent()}} - Communauté
+{% endblock %}
+
+{% block content %}
+    {% if session.register is not empty %}
+        {% if(session.register.is_admin) %}
+            <div class="d-flex justify-content-end mt-5 me-4 text-white">
+                <p class="fs-4">Administrateur</p>
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-end me-4 text-white">
+            <p>Connecté en tant que {{ session.register.firstname }} {{ session.register.lastname }}</p>
+        </div>
+    {% endif %}
+    <div class="text-center text-white fs-1 mb-5">
+        <h1>Communautés</h1>
+    </div>
+    <div class="row container-fluid mx-auto mt-5 d-flex flex-wrap justify-content-center px-5">
+    {% for userData in usersData %}
+    <div class="card mb-5 col-sm-12 col-md-5 col-lg-3 mx-3">
+        <div class="card-body text-center">
+            <img src="https://avatars.githubusercontent.com/{{ userData.github }}" class="rounded-pill" width="150px" height="150px" alt="profile">
+            <h5 class="card-title">{{ userData.firstname }} {{ userData.lastname }}</h5>
+            <a href="/user/profil?id={{ userData.id }}" class="color-text-danger">Voir le profil</a></button>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}

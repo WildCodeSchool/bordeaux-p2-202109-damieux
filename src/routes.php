@@ -17,4 +17,5 @@ return [
     'user/inscription'           => ['RegisterController', 'add',],
     'deconnecter'                => ['RegisterController', 'logout'],
     'user/profil'                => ['RegisterController', 'profil', ['id']],
+    'communauté'                 => ['CommunityController', 'showUser'],
     ];
