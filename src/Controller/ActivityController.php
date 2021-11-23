@@ -115,7 +115,6 @@ class ActivityController extends AbstractController
         }
         $commentManager = new CommentManager();
         $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
-
         $sortedUsers = [];
         foreach ($userNameByVotings as $userData) {
             $content = $userData['content'];
