@@ -116,9 +116,9 @@ class ActivityController extends AbstractController
         $commentManager = new CommentManager();
         $comments = $commentManager->selectUsersFirstnameByActivityId($activityId);
         $sortedUsers = [];
-        foreach ($userNameByVotings as $userData) {
-            $content = $userData['content'];
-            $sortedUsers[$content][] = $userData;
+        foreach ($userNameByVotings as $userVoteData) {
+            $content = $userVoteData['content'];
+            $sortedUsers[$content][] = $userVoteData;
         }
 
         return $this->twig->render('Activity/show.html.twig', [
