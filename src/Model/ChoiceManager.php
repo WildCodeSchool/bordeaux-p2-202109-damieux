@@ -25,6 +25,14 @@ class ChoiceManager extends AbstractManager
         $statement->execute();
     }
 
+    public function checkIfAlreadyVote(int $propositionId, int $userId)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM " . self::TABLE . " WHERE user_id=:userId AND proposition_id=:propositionId");
+        $statement->bindValue(':propositionId', $propositionId, \PDO::PARAM_INT);
+        $statement->bindValue(':userId', $userId, \PDO::PARAM_INT);
+        $statement->execute();
+        return (bool)$statement->fetch();
+    }
     public function selectVotingUsersIdsByActivityId(int $activityId): array
     {
         $statement = $this->pdo->prepare("SELECT c.user_id FROM choice c 

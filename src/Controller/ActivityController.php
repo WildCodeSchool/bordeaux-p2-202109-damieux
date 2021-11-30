@@ -64,25 +64,29 @@ class ActivityController extends AbstractController
         $activity = $activityManager->getActivityWithMail($activityId);
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $choiceManager = new ChoiceManager();
+            $userId = $_SESSION['register']['id'];
             if (empty($_POST['answers'])) {
                 $errors[] = 'La sélection ne peut être vide';
             }
             if (empty($errors)) {
                 foreach ($_POST['answers'] as $answer) {
-                    $userId = $_SESSION['register']['id'];
-                    $choiceManager = new ChoiceManager();
-                    $choiceManager->insertChoice($answer, $userId);
+                    if ($choiceManager->checkIfAlreadyVote($answer, $userId)) {
+                        $errors[] = 'A déjà voté';
+                    } else {
+                        $choiceManager->insertChoice($answer, $userId);
+                        $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
+                        $swift->setUsername(APP_USERNAME);
+                        $swift->setPassword(APP_PASSWORD);
+                        $mailer = new Swift_Mailer($swift);
+                        $message = new Swift_Message();
+                        $message->setSubject('Réponse à votre sondage')
+                            ->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
+                            ->setTo([$activity['mail']])
+                            ->setBody('Un participant a répondu à votre sondage : ' . $activity['title']);
+                        $mailer->send($message);
+                    }
                 }
-                $swift = new Swift_SmtpTransport('ssl0.ovh.net', 587);
-                $swift->setUsername(APP_USERNAME);
-                $swift->setPassword(APP_PASSWORD);
-                $mailer = new Swift_Mailer($swift);
-                $message = new Swift_Message();
-                $message->setSubject('Réponse à votre sondage')
-                    ->setFrom(['wilderevent@harari.ovh' => 'Wilder Event'])
-                    ->setTo([$activity['mail']])
-                    ->setBody('Un participant a répondu à votre sondage : ' . $activity['title']);
-                $mailer->send($message);
             }
         }
         $proposeManager = new ProposeManager();
